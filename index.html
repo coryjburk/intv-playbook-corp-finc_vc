@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eccles MBA — Corporate Finance Leadership Interview Playbook</title>
+    <style>
+        :root {
+            --bg-dark: #0F1115;
+            --bg-panel: #161A22;
+            --bg-hover: #1E2430;
+            --primary: #CC0000;
+            --primary-hover: #E60000;
+            --accent: #c9a84c;
+            --text-main: #E2E8F0;
+            --text-muted: #94A3B8;
+            --border: #334155;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-sans); }
+        
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; display: flex; height: 100vh; overflow: hidden; }
+
+        /* Sidebar */
+        #sidebar { width: 280px; background-color: var(--bg-panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
+        .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border); }
+        .brand-logo { color: var(--text-main); font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
+        .brand-logo span { color: var(--primary); }
+        .sidebar-nav { padding: 16px 0; flex: 1; }
+        .nav-item { padding: 12px 24px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; font-weight: 500; }
+        .nav-item:hover, .nav-item.active { background-color: var(--bg-hover); color: var(--accent); border-right: 3px solid var(--primary); }
+        
+        /* Main Content */
+        #main-content { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow-y: auto; scroll-behavior: smooth; }
+        
+        /* Sticky Header */
+        header { position: sticky; top: 0; background: rgba(22, 26, 34, 0.95); backdrop-filter: blur(8px); padding: 16px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .header-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+        .header-subtitle { font-size: 0.85rem; color: var(--accent); margin-top: 2px; }
+        
+        /* Hero Section */
+        .hero { padding: 60px 40px; background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(204,0,0,0.1) 0%, rgba(0,0,0,0) 70%); }
+        .track-pill { display: inline-block; background: rgba(201, 168, 76, 0.1); color: var(--accent); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 16px; border: 1px solid rgba(201, 168, 76, 0.3); text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; color: #fff; letter-spacing: -1px; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; margin-bottom: 32px; }
+        
+        /* FIX: Added flex-wrap: wrap to prevent cutoff */
+        .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+        .stat-item { display: flex; flex-direction: column; }
+        .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Container */
+        .content-container { padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; display: none; }
+        .content-container.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Section Titles */
+        .section-header { margin-bottom: 32px; }
+        .section-header h2 { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .section-header p { color: var(--text-muted); font-size: 1rem; max-width: 800px; }
+        
+        /* Question Cards */
+        .grid-layout { display: grid; gap: 20px; }
+        .card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: all 0.2s; position: relative; }
+        .card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+        .meta-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { font-size: 0.75rem; padding: 4px 10px; border-radius: 12px; font-weight: 600; text-transform: uppercase; }
+        .tag-cat { background: rgba(204,0,0,0.1); color: var(--primary); border: 1px solid rgba(204,0,0,0.2); }
+        .tag-diff { background: rgba(201,168,76,0.1); color: var(--accent); border: 1px solid rgba(201,168,76,0.2); }
+        .card-title { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: 20px; }
+        
+        /* Answer Tabs */
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; overflow-x: auto; }
+        .tab-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.85rem; padding: 6px 12px; cursor: pointer; border-radius: 4px; font-weight: 500; }
+        .tab-btn.active { background: rgba(255,255,255,0.05); color: var(--accent); }
+        .tab-content { display: none; font-size: 0.95rem; color: var(--text-main); background: rgba(0,0,0,0.2); padding: 16px; border-radius: 8px; border-left: 3px solid var(--border); }
+        .tab-content.active { display: block; }
+        
+        .action-bar { margin-top: 20px; display: flex; gap: 12px; border-top: 1px solid var(--border); padding-top: 16px; }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent); color: var(--accent); }
+
+        /* Practice Modal */
+        #practice-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: var(--bg-panel); width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .modal-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); }
+        .modal-body { padding: 24px; }
+        #transcript-area { width: 100%; height: 180px; background: var(--bg-dark); border: 1px solid var(--border); color: var(--text-main); padding: 16px; border-radius: 8px; resize: vertical; margin-bottom: 16px; font-size: 1rem; outline: none; }
+        #transcript-area:focus { border-color: var(--accent); }
+        
+        .pulse-record { animation: pulse 1.5s infinite; background: var(--danger) !important; color: white !important; border-color: var(--danger) !important; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+
+        /* Dashboard */
+        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 24px; }
+        .dash-card { background: var(--bg-panel); padding: 24px; border-radius: 12px; border: 1px solid var(--border); text-align: center; }
+        .score-circle { width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 16px auto; color: #fff; transition: all 0.5s ease; }
+        .progress-bar { width: 100%; height: 8px; background: var(--bg-dark); border-radius: 4px; overflow: hidden; margin-top: 12px; }
+        .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 1s ease; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 40px 24px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-stats { gap: 20px; }
+            header { flex-direction: column; gap: 12px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-logo"><span>E</span> Eccles MBA</div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-item active" onclick="switchTab('dashboard', this)">📊 Readiness Dashboard</div>
+            <div class="nav-item" onclick="switchTab('questions', this)">📚 Question Bank</div>
+            <div class="nav-item" onclick="switchTab('frameworks', this)">📐 Finance Frameworks</div>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <header>
+            <div>
+                <div class="header-title">Corporate Finance Leadership Interview Playbook</div>
+                <div class="header-subtitle">Corporate Finance · Strategic Finance · FP&A</div>
+            </div>
+            <div>
+                <button class="btn-outline" style="font-size: 0.85rem;" onclick="resetProgress()">🔄 Reset Progress</button>
+            </div>
+        </header>
+
+        <section class="hero" id="hero-section">
+            <div class="track-pill">Finance Leadership Track</div>
+            <h1>Corporate Finance Leadership Mastery.</h1>
+            <p>125 corporate finance interview questions, valuation frameworks, strategic finance cases, and AI coaching tools designed for MBA candidates pursuing competitive finance leadership roles.</p>
+            <div class="hero-stats">
+                <div class="stat-item"><span class="stat-value">125</span><span class="stat-label">Interview Questions</span></div>
+                <div class="stat-item"><span class="stat-value">15</span><span class="stat-label">Finance Frameworks</span></div>
+                <div class="stat-item"><span class="stat-value">20</span><span class="stat-label">Executive Cases</span></div>
+                <div class="stat-item"><span class="stat-value">AI</span><span class="stat-label">Speech Coaching</span></div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="content-container active">
+            <div class="section-header">
+                <h2>Readiness Dashboard</h2>
+                <p>Track your simulated performance across core Corporate Finance competencies.</p>
+            </div>
+            <div class="dash-grid">
+                <div class="dash-card">
+                    <div class="score-circle" id="overall-score">0</div>
+                    <h3 style="color:var(--text-main)">Overall Readiness Score</h3>
+                    <p style="color:var(--accent); font-weight: 600; margin-top: 8px;" id="readiness-level">Not Evaluated</p>
+                </div>
+                <div class="dash-card" style="text-align: left;">
+                    <h3 style="margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">Competency Averages</h3>
+                    <div><small>Financial Modeling & Valuation</small><div class="progress-bar"><div class="progress-fill" id="bar-modeling" style="width: 0%"></div></div></div>
+                    <div style="margin-top:12px"><small>Strategic Finance</small><div class="progress-bar"><div class="progress-fill" id="bar-strategy" style="width: 0%"></div></div></div>
+                    <div style="margin-top:12px"><small>Communication & Pacing</small><div class="progress-bar"><div class="progress-fill" id="bar-comm" style="width: 0%"></div></div></div>
+                </div>
+                <div class="dash-card" style="text-align: left;">
+                    <h3 style="margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">Performance Logs</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Practiced Questions: <span style="color:#fff" id="practiced-count">0</span> / 125</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top:8px;">Avg Filler Words: <span style="color:var(--warning)" id="avg-fillers">0</span> per session</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top:8px;">Recent Trend: <span style="color:var(--success)" id="trend-text">Start practicing...</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="questions" class="content-container">
+            <div class="section-header">
+                <h2>Interview Question Bank</h2>
+            </div>
+            <div id="questions-grid" class="grid-layout">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="meta-tags">
+                            <span class="tag tag-cat">Financial Modeling & Forecasting</span>
+                            <span class="tag tag-diff">Foundational</span>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:0.8rem">Q-001</span>
+                    </div>
+                    <h3 class="card-title">Walk me through a DCF valuation.</h3>
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="toggleInnerTab(this, 'conv-Q-001')">Conversational Answer</button>
+                        <button class="tab-btn" onclick="toggleInnerTab(this, 'deep-Q-001')">Deep Dive</button>
+                    </div>
+                    <div id="conv-Q-001" class="tab-content active">A DCF values a company based on the present value of its projected free cash flows. I'd project UFCF for 5-10 years, calculate a terminal value, and discount both back using WACC to find Enterprise Value.</div>
+                    <div id="deep-Q-001" class="tab-content"><strong>Strategic Framework:</strong> Assumptions dictate everything. Revenue growth, margin assumptions, CapEx, and working capital changes drive the UFCF. WACC blends Cost of Equity (CAPM) and Cost of Debt.</div>
+                    <div class="action-bar">
+                        <button class="btn-outline" onclick="openModal('Q-001')">🎤 Practice & Grade Answer</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="frameworks" class="content-container">
+            <div class="section-header">
+                <h2>Finance Frameworks</h2>
+                <p>The structured financial thinking approaches every corporate finance candidate should know cold.</p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">The 3-Statement Linking Blueprint</h3>
+                <p style="color:var(--text-muted); margin-top: 8px;">Income Statement (Net Income) ➔ Cash Flow Statement (Top Line) ➔ Balance Sheet (Retained Earnings & Cash Balance).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="practice-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="color:#fff">AI Practice Studio</h3>
+                <button class="btn-outline" onclick="closeModal()" style="border: none;">❌</button>
+            </div>
+            <div class="modal-body">
+                <p style="color:var(--text-muted); margin-bottom: 16px;">Speak your answer out loud. The AI engine will evaluate your keywords, check for filler words, and update your Readiness Dashboard.</p>
+                <textarea id="transcript-area" placeholder="Start typing or click the microphone to speak your answer..."></textarea>
+                
+                <div style="display: flex; gap: 12px; margin-top: 10px;">
+                    <button id="record-btn" class="btn-outline" style="border-color: var(--primary); color: #fff;" onclick="toggleRecording()">🎤 Start Recording</button>
+                    <button class="btn-outline" style="background: var(--success); border: none; color: #000;" onclick="submitForAI()">🧠 Submit for AI Evaluation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. UI Tab Navigation ---
+        function switchTab(tabId, navElement) {
+            document.querySelectorAll('.content-container').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            navElement.classList.add('active');
+        }
+
+        function toggleInnerTab(btn, contentId) {
+            const card = btn.closest('.card');
+            card.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            card.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(contentId).classList.add('active');
+        }
+
+        function openModal(qId) {
+            document.getElementById('practice-modal').style.display = 'flex';
+            document.getElementById('transcript-area').value = "";
+            continuousTranscript = ""; // Reset the tracking variable for the new answer
+        }
+
+        function closeModal() {
+            document.getElementById('practice-modal').style.display = 'none';
+            if (isRecording) {
+                toggleRecording(); // Stop recording if they close the window
+            }
+        }
+
+        // --- 2. Advanced Audio Engine (Fixes the "Vanishing Text Bug") ---
+        let recognition;
+        let isRecording = false;
+        let continuousTranscript = "";
+
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            recognition.onresult = function(event) {
+                let interimTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        // When a sentence finishes, lock it into the global persistence variable
+                        continuousTranscript += event.results[i][0].transcript + ' ';
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+                // Display the locked text + the words currently being spoken
+                document.getElementById('transcript-area').value = continuousTranscript + interimTranscript;
+            };
+
+            // Auto-restart loop to prevent the engine from timing out when the user pauses
+            recognition.onend = function() {
+                if (isRecording) {
+                    recognition.start();
+                }
+            };
+        } else {
+            console.warn("Speech Recognition API not supported in this browser. Please use Chrome or Edge.");
+        }
+
+        function toggleRecording() {
+            const btn = document.getElementById('record-btn');
+            if (isRecording) {
+                recognition.stop();
+                isRecording = false;
+                btn.innerText = "🎤 Start Recording";
+                btn.classList.remove('pulse-record');
+            } else {
+                // Keep any text they typed before hitting record
+                continuousTranscript = document.getElementById('transcript-area').value + (document.getElementById('transcript-area').value ? " " : ""); 
+                recognition.start();
+                isRecording = true;
+                btn.innerText = "⏹️ Stop Recording";
+                btn.classList.add('pulse-record');
+            }
+        }
+
+        // --- 3. Simulated AI Scoring Heuristic ---
+        let totalPracticed = 0;
+        let globalScore = 0;
+        let totalFillersFound = 0;
+
+        // Core MBA Finance concepts we want them to say
+        const targetKeywords = ["ebitda", "margin", "synergy", "synergies", "operational", "cash flow", "valuation", "wacc", "dcf", "variance", "strategic", "roi", "capex", "leverage", "retention", "ARR", "discount rate", "terminal value", "assumptions", "risk", "mitigate"];
+        
+        // Words we penalize
+        const fillerWords = ["um", "uh", "like", "you know", "kind of", "basically", "so yeah"];
+
+        function submitForAI() {
+            if (isRecording) toggleRecording(); // Turn off mic automatically
+            
+            const text = document.getElementById('transcript-area').value.toLowerCase();
+            if (text.length < 30) {
+                alert("Answer too short! Please provide a more detailed response for the AI to evaluate.");
+                return;
+            }
+
+            // 1. Calculate length baseline
+            let wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+            
+            // 2. Count Keywords
+            let keywordHits = 0;
+            targetKeywords.forEach(kw => {
+                if (text.includes(kw.toLowerCase())) keywordHits++;
+            });
+
+            // 3. Count Fillers
+            let fillerHits = 0;
+            fillerWords.forEach(fw => {
+                const regex = new RegExp("\\b" + fw + "\\b", "g");
+                const matches = text.match(regex);
+                if (matches) fillerHits += matches.length;
+            });
+
+            // Math: Base Score (50) + Length Bonus (up to 25) + Keyword Bonus (up to 30) - Filler Penalty
+            let calculatedScore = 50;
+            calculatedScore += Math.min(25, (wordCount / 80) * 25); // Target 80+ words for max length bonus
+            calculatedScore += Math.min(30, keywordHits * 6);       // Target 5+ keywords for max bonus
+            calculatedScore -= (fillerHits * 3);                    // -3 points for every filler word
+            
+            calculatedScore = Math.max(0, Math.min(100, Math.round(calculatedScore))); // Keep between 0 and 100
+            
+            // Push to Global Scope
+            totalPracticed++;
+            totalFillersFound += fillerHits;
+            globalScore = Math.floor(((globalScore * (totalPracticed - 1)) + calculatedScore) / totalPracticed);
+            
+            updateDashboard();
+            closeModal();
+            
+            alert(`🧠 AI Evaluation Complete!\n\nScore: ${calculatedScore}/100\n\nWord Count: ${wordCount}\nCore Keywords Found: ${keywordHits}\nFiller Words Penalized: ${fillerHits}`);
+        }
+
+        // --- 4. Readiness Dashboard Controller & Reset System ---
+        function updateDashboard() {
+            document.getElementById('practiced-count').innerText = totalPracticed;
+            document.getElementById('overall-score').innerText = globalScore;
+            
+            let avgFillers = totalPracticed > 0 ? (totalFillersFound / totalPracticed).toFixed(1) : 0;
+            document.getElementById('avg-fillers').innerText = avgFillers;
+            
+            let level = "Emerging";
+            if (globalScore >= 60) level = "Developing";
+            if (globalScore >= 80) level = "Interview Ready";
+            if (globalScore >= 90) level = "Offer Ready";
+            
+            document.getElementById('readiness-level').innerText = level;
+            
+            let trend = "Start practicing...";
+            if (totalPracticed > 0) {
+                trend = globalScore >= 75 ? "Upward Momentum 📈" : "Needs Structure 📉";
+            }
+            document.getElementById('trend-text').innerText = trend;
+            
+            document.getElementById('bar-modeling').style.width = Math.min(100, globalScore + 5) + "%";
+            document.getElementById('bar-strategy').style.width = Math.max(0, Math.min(100, globalScore - 2)) + "%";
+            
+            // Penalty calculation for the communication bar based on average filler words
+            let commPenalty = avgFillers * 5; 
+            document.getElementById('bar-comm').style.width = Math.max(0, Math.min(100, globalScore - commPenalty)) + "%";
+        }
+
+        function resetProgress() {
+            if(confirm("⚠️ Are you sure you want to reset all your practice scores and wipe your Readiness Dashboard?")) {
+                totalPracticed = 0;
+                globalScore = 0;
+                totalFillersFound = 0;
+                continuousTranscript = "";
+                
+                document.getElementById('overall-score').innerText = "0";
+                document.getElementById('readiness-level').innerText = "Not Evaluated";
+                document.getElementById('practiced-count').innerText = "0";
+                document.getElementById('avg-fillers').innerText = "0";
+                document.getElementById('trend-text').innerText = "Start practicing...";
+                
+                document.getElementById('bar-modeling').style.width = "0%";
+                document.getElementById('bar-strategy').style.width = "0%";
+                document.getElementById('bar-comm').style.width = "0%";
+            }
+        }
+    </script>
+</body>
+</html>
