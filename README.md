@@ -5,7 +5,7 @@
 
 ---
 
-**Live Playbook ▶ [https://coryjburk.github.io/intv-playbook-corp_finc-vg-/]**
+**Live Playbook ▶ [Intv Playbook – Corporate Finance (vG)](https://coryjburk.github.io/intv-playbook-corp_finc-vg-/)**
 
 ---
 
