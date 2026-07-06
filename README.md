@@ -1,5 +1,5 @@
 # 📊 Corporate Finance Leadership Interview Playbook
-**University of Utah · David Eccles School of Business**
+**Full-Time MBA Program · David Eccles School of Business**
 
 > A self-contained, browser-based practice tool for MBA candidates preparing for **Corporate Finance, Strategic Finance, and FP&A leadership interviews.** Built for the University of Utah David Eccles School of Business MBA program.
 
@@ -8,8 +8,11 @@
 ![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-161A22?style=flat-square)
 ![Questions](https://img.shields.io/badge/questions-100-10B981?style=flat-square)
 
-**▶ [Launch the Playbook](index.html)**
-<!-- Replace the URL above with your deployed GitHub Pages address. -->
+---
+
+**▶ [Launch the Playbook]([https://coryjburk.github.io/intv-playbook-corp_finc-vg-/])**
+
+---
 
 A 100-question bank paired with a practice studio that scores your spoken or typed answers, generates a tailored AI coaching prompt, lets you self-assess against model answers, and tracks your readiness over time. It's a single HTML file with no dependencies and no build step — open it locally or deploy it to GitHub Pages as-is.
 
