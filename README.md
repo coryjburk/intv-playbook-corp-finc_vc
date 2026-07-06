@@ -5,7 +5,7 @@
 
 ---
 
-**▶ [Launch the Playbook][https://coryjburk.github.io/intv-playbook-corp_finc-vg-/]**
+**Live Playbook ▶ [https://coryjburk.github.io/intv-playbook-corp_finc-vg-/]**
 
 ---
 
