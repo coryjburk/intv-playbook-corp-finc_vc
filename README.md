@@ -3,11 +3,6 @@
 
 > A self-contained, browser-based practice tool for MBA candidates preparing for **Corporate Finance, Strategic Finance, and FP&A leadership interviews.** Built for the University of Utah David Eccles School of Business MBA program.
 
-![Single file](https://img.shields.io/badge/single--file-HTML-CC0000?style=flat-square)
-![Build](https://img.shields.io/badge/build-none-c9a84c?style=flat-square)
-![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-161A22?style=flat-square)
-![Questions](https://img.shields.io/badge/questions-100-10B981?style=flat-square)
-
 ---
 
 **▶ [Launch the Playbook]([https://coryjburk.github.io/intv-playbook-corp_finc-vg-/])**
