@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eccles MBA — Corporate Finance Leadership Interview Playbook</title>
+    <title>Corporate Finance Leadership Interview Playbook — Full-Time MBA Program · David Eccles School of Business</title>
     <style>
         :root {
             --bg-dark: #0F1115;
@@ -30,6 +30,7 @@
         .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border); }
         .brand-logo { color: var(--text-main); font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
         .brand-logo span { color: var(--primary); }
+        .brand-school { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px; }
         .sidebar-nav { padding: 16px 0; flex: 1; }
         .nav-item { padding: 12px 24px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; font-weight: 500; border-right: 3px solid transparent; }
         .nav-item:hover, .nav-item.active { background-color: var(--bg-hover); color: var(--accent); border-right-color: var(--primary); }
@@ -39,9 +40,13 @@
         #main-content { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow-y: auto; scroll-behavior: smooth; }
 
         /* Sticky Header */
-        header { position: sticky; top: 0; background: rgba(22, 26, 34, 0.95); backdrop-filter: blur(8px); padding: 16px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 100; gap: 16px; }
+        header { position: sticky; top: 0; background: rgba(22, 26, 34, 0.95); backdrop-filter: blur(8px); padding: 16px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 100; gap: 16px; flex-wrap: wrap; }
         .header-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
         .header-subtitle { font-size: 0.85rem; color: var(--accent); margin-top: 2px; }
+        .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        /* Storage warning banner */
+        #storage-banner { display: none; background: rgba(245,158,11,0.12); border-bottom: 1px solid rgba(245,158,11,0.4); color: var(--warning); padding: 10px 40px; font-size: 0.85rem; }
 
         /* Hero Section */
         .hero { padding: 60px 40px; background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
@@ -131,7 +136,7 @@
         #results-panel { display: none; margin-top: 20px; padding: 20px; border-radius: 10px; background: rgba(0,0,0,0.25); border: 1px solid var(--border); }
         .result-top { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
         .result-score { width: 84px; height: 84px; border-radius: 50%; border: 4px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700; color: #fff; flex-shrink: 0; }
-        .result-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: 12px; flex: 1; min-width: 200px; }
+        .result-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr)); gap: 12px; flex: 1; min-width: 200px; }
         .metric { background: var(--bg-dark); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); }
         .metric .v { font-size: 1.2rem; font-weight: 700; color: #fff; }
         .metric .l { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
@@ -161,9 +166,9 @@
         .calibration-note.show { display: block; }
         .calibration-note strong { color: var(--accent); }
 
-        /* Confirm dialog */
-        #confirm-modal .modal-content { max-width: 420px; }
-        #confirm-modal p { color: var(--text-muted); margin: 8px 0 20px; }
+        /* Confirm dialogs */
+        #confirm-modal .modal-content, #import-modal .modal-content { max-width: 420px; }
+        #confirm-modal p, #import-modal p { color: var(--text-muted); margin: 8px 0 20px; }
 
         /* Dashboard */
         .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 24px; }
@@ -186,6 +191,7 @@
             .nav-item.active { border-bottom: 3px solid var(--primary); }
             #main-content { height: auto; }
             header { position: static; flex-wrap: wrap; padding: 16px 20px; }
+            #storage-banner { padding: 10px 20px; }
             .hero { padding: 40px 24px; }
             .hero h1 { font-size: 2.2rem; }
             .hero-stats { gap: 20px; }
@@ -197,7 +203,8 @@
 
     <aside id="sidebar">
         <div class="sidebar-header">
-            <div class="brand-logo"><span>E</span> Eccles MBA</div>
+            <div class="brand-logo"><span>E</span> Full-Time MBA</div>
+            <div class="brand-school">David Eccles School of Business</div>
         </div>
         <nav class="sidebar-nav" aria-label="Sections">
             <div class="nav-item active" role="button" tabindex="0" data-target="dashboard">📊 Readiness Dashboard</div>
@@ -210,12 +217,16 @@
         <header>
             <div>
                 <div class="header-title">Corporate Finance Leadership Interview Playbook</div>
-                <div class="header-subtitle">Corporate Finance · Strategic Finance · FP&amp;A</div>
+                <div class="header-subtitle">Full-Time MBA Program · David Eccles School of Business</div>
             </div>
-            <div>
+            <div class="header-actions">
+                <button class="btn-outline" style="font-size: 0.85rem;" id="export-btn">📤 Export</button>
+                <button class="btn-outline" style="font-size: 0.85rem;" id="import-btn">📥 Import</button>
                 <button class="btn-outline" style="font-size: 0.85rem;" id="reset-btn">🔄 Reset Progress</button>
+                <input type="file" id="import-file" accept=".json,application/json" style="display:none" aria-hidden="true">
             </div>
         </header>
+        <div id="storage-banner">⚠️ This browser is blocking local storage — progress won't survive a reload. Use 📤 Export to save your progress to a file.</div>
 
         <section class="hero" id="hero-section">
             <div class="track-pill">Finance Leadership Track</div>
@@ -239,6 +250,7 @@
                     <div class="score-circle" id="overall-score">0</div>
                     <h3 style="color:var(--text-main)">Overall Readiness Score</h3>
                     <p style="color:var(--accent); font-weight: 600; margin-top: 8px;" id="readiness-level">Not Evaluated</p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 6px;">Based on your most recent attempts per question</p>
                 </div>
                 <div class="dash-card" style="text-align: left;">
                     <h3 style="margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">Competency Averages</h3>
@@ -290,13 +302,14 @@
                 <button class="btn-outline" style="border:none;" id="close-practice" aria-label="Close practice studio">✕</button>
             </div>
             <div class="modal-body">
-                <p style="color:var(--text-muted); margin-bottom: 16px;">Speak your answer out loud, or type it. The engine checks for this question's core finance keywords, counts filler words, and updates your Readiness Dashboard.</p>
+                <p style="color:var(--text-muted); margin-bottom: 16px;">Speak your answer out loud, or type it. The engine checks for this question's core finance keywords, counts filler words, times your answer, and updates your Readiness Dashboard.</p>
                 <textarea id="transcript-area" placeholder="Start typing, or click the microphone to speak your answer…" aria-label="Your answer"></textarea>
                 <div class="modal-actions">
                     <button id="record-btn" class="btn-outline" style="border-color: var(--primary); color: #fff;">🎤 Start Recording</button>
                     <button class="btn-solid btn-success" id="submit-btn">🧠 Submit for AI Evaluation</button>
                 </div>
                 <div class="support-note" id="support-note">🎤 Speech recognition isn't supported in this browser — type your answer, or use Chrome or Edge. Scoring works either way.</div>
+                <div class="support-note" id="length-note"></div>
 
                 <div id="results-panel" aria-live="polite">
                     <div class="result-top">
@@ -305,9 +318,12 @@
                             <div class="metric"><div class="v" id="m-words">0</div><div class="l">Words</div></div>
                             <div class="metric"><div class="v" id="m-keywords">0</div><div class="l" id="m-mid-label">Keywords Hit</div></div>
                             <div class="metric"><div class="v" id="m-fillers">0</div><div class="l">Filler Words</div></div>
+                            <div class="metric"><div class="v" id="m-duration">—</div><div class="l">Duration</div></div>
+                            <div class="metric"><div class="v" id="m-wpm">—</div><div class="l">Pace (WPM)</div></div>
                         </div>
                     </div>
                     <div class="kw-list" id="kw-breakdown"></div>
+                    <div class="kw-list" id="pacing-note"></div>
 
                     <div id="coaching-block">
                         <div class="coaching-divider"></div>
@@ -343,7 +359,7 @@
         </div>
     </div>
 
-    <!-- Confirm Modal -->
+    <!-- Confirm Reset Modal -->
     <div id="confirm-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
         <div class="modal-content">
             <div class="modal-header"><h3 id="confirm-title">⚠️ Reset Progress</h3></div>
@@ -352,6 +368,20 @@
                 <div class="modal-actions">
                     <button class="btn-solid btn-danger" id="confirm-reset">Yes, reset everything</button>
                     <button class="btn-outline" id="cancel-reset">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Import Modal -->
+    <div id="import-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="import-title">
+        <div class="modal-content">
+            <div class="modal-header"><h3 id="import-title">📥 Import Progress</h3></div>
+            <div class="modal-body">
+                <p id="import-summary"></p>
+                <div class="modal-actions">
+                    <button class="btn-solid btn-success" id="confirm-import">Replace my progress</button>
+                    <button class="btn-outline" id="cancel-import">Cancel</button>
                 </div>
             </div>
         </div>
@@ -638,8 +668,8 @@
             title: "How do deferred tax assets and liabilities arise?",
             conversational: "They come from timing differences between book accounting and tax accounting. A deferred tax liability arises when you pay less tax now than book income implies \u2014 accelerated tax depreciation is the classic case. A deferred tax asset arises when you pay more now and get the benefit later, like carrying forward a net operating loss.",
             deepDive: "<strong>Mechanics:</strong> Book and tax rules recognize income and expense on different schedules, so the cash tax paid differs from the book tax expense; the difference parks on the balance sheet as a DTA or DTL until it reverses. NOL carryforwards and stock comp create DTAs; accelerated depreciation creates DTLs. Watch DTA valuation allowances \u2014 they signal doubt the benefit will ever be used.",
-            keywords: ["deferred tax", "timing difference", "book", "tax", "accelerated depreciation", "net operating loss", "carryforward", "valuation allowance", "reverse"]
-        },,
+            keywords: ["deferred tax", "timing difference", "book income", "cash tax", "accelerated depreciation", "net operating loss", "carryforward", "valuation allowance", "reverse"]
+        },
         {
             id: "Q-037", category: "M&A & Corporate Development", competency: "modeling", difficulty: "Core",
             title: "Walk me through a merger model and accretion/dilution analysis.",
@@ -758,7 +788,7 @@
             conversational: "The riskiest are usually long-term growth, terminal value, and margin assumptions, because small changes compound into big swings. I'd identify which inputs the output is most sensitive to, then stress those to a credible downside case and check whether the decision still holds.",
             deepDive: "<strong>Stress discipline:</strong> Run sensitivities to find the high-leverage assumptions \u2014 often growth, WACC, and terminal multiple in a DCF, or synergy capture in a deal \u2014 then build a real downside, not a token one. A robust recommendation survives a reasonable pessimistic case; if it only works in the base case, the risk isn't priced in.",
             keywords: ["growth", "terminal value", "margin", "sensitivity", "downside", "wacc", "compounding", "high-leverage", "robust"]
-        },,
+        },
         {
             id: "Q-054", category: "Capital Allocation & Corp Finance", competency: "strategy", difficulty: "Core",
             title: "What's the difference between NPV and IRR, and when do they conflict?",
@@ -877,7 +907,7 @@
             conversational: "I'd identify the exposures that could threaten the company's strategy or solvency \u2014 liquidity, leverage, currency, rates, counterparty \u2014 then decide which to accept, mitigate, or transfer. The point is to protect the firm's ability to execute, not to eliminate all risk, which would also eliminate return.",
             deepDive: "<strong>Framework:</strong> Map exposures by likelihood and severity, focus on the tail risks that could impair the business, and match each to a response \u2014 hold capital and liquidity buffers, hedge market exposures, diversify concentration, and set policy limits. Good risk management is mostly about resilience: making sure no single shock can force a fire sale or a covenant breach. It's a strategic enabler, not a compliance exercise.",
             keywords: ["risk management", "exposure", "liquidity", "leverage", "counterparty", "mitigate", "transfer", "tail risk", "resilience"]
-        },,
+        },
         {
             id: "Q-071", category: "FP&A & Strategic Finance", competency: "strategy", difficulty: "Core",
             title: "Walk me through how you'd build a variance bridge.",
@@ -996,7 +1026,7 @@
             conversational: "Two approaches, ideally cross-checked: top-down, starting from a large industry figure and narrowing by relevant segments, and bottom-up, building from the number of potential customers times price times purchase frequency. Bottom-up is usually more defensible because every assumption is explicit.",
             deepDive: "<strong>Method:</strong> Top-down (industry size times addressable share) is fast but can be hand-wavy; bottom-up (customers times average spend) forces you to state and defend each assumption. I'd compute TAM, then a realistic serviceable and obtainable market, and sanity-check the two methods against each other. The discipline is making the assumptions explicit so a skeptic can challenge them.",
             keywords: ["market sizing", "top-down", "bottom-up", "tam", "sam", "som", "assumptions", "customers", "cross-check"]
-        },,
+        },
         {
             id: "B-005", category: "Behavioral & Leadership", competency: "communication", type: "behavioral", difficulty: "Advanced",
             title: "Tell me about a time you disagreed with your manager or a senior leader.",
@@ -1050,7 +1080,7 @@
             title: "Tell me about a time you took initiative on something beyond your formal role.",
             conversational: "While reviewing our management reporting, I noticed the company had no clean view of customer profitability \u2014 finance reported at the product level, so unprofitable accounts were invisible. Nobody had asked me to, but I built a customer-level margin model on my own time, surfaced that the bottom decile of accounts was destroying margin, and brought it to the leadership team. They used it to renegotiate or exit those accounts, lifting overall margin by about two points. I learned that the highest-impact work often sits in the gap nobody owns, and that bringing a built solution, not just a problem, is what gets it adopted.",
             deepDive: "<strong>Context / Challenge:</strong> Establish the gap or opportunity nobody owned. <strong>Action:</strong> Show the initiative you took without being asked. <strong>Result:</strong> The quantified impact it drove. <strong>Learning:</strong> Reflect on ownership and bringing solutions, not just problems."
-        },
+        }
     ];
 
     const FRAMEWORKS = [
@@ -1088,12 +1118,12 @@
 
     const SCORING = {
         fillers: ["um", "uh", "like", "you know", "kind of", "sort of", "basically", "literally", "so yeah", "i mean"],
-        baseScore: 50,
-        lengthBonusMax: 25,
+        baseScore: 30,          // floor lowered so a weak answer scores honestly
+        lengthBonusMax: 30,
         targetWords: 80,
-        keywordBonusMax: 30,
-        keywordPoints: 6,      // per keyword hit, capped at keywordBonusMax
-        fillerPenalty: 3       // per filler word
+        keywordBonusMax: 40,
+        keywordPoints: 6,       // per keyword hit, capped at keywordBonusMax
+        fillerPenalty: 3        // per filler word
     };
 
     /* CARL rubric for behavioral questions — each beat is detected by signal
@@ -1111,202 +1141,164 @@
     ];
 
     /* =====================================================================
-       STATE + PERSISTENCE  (localStorage, with safe in-memory fallback)
+       STATE & PERSISTENCE
+       v2 schema: attempts[qid] = { count, last, best, recent, scoreLog[],
+       fillerLog[], competency, self } · history = last 12 { s, t } globally.
+       Migrates v1 progress (scoreLog seeded from the last score).
        ===================================================================== */
-    const STORAGE_KEY = "eccles_cf_playbook_v1";
-    let state = { attempts: {}, lastScore: null }; // attempts keyed by qId
+    const STORAGE_KEY = "eccles_cf_playbook_v2";
+    const LEGACY_KEY = "eccles_cf_playbook_v1";
     let memoryFallback = false;
+    let state = { schema: 2, attempts: {}, history: [] };
+
+    function migrateV1(old) {
+        const s = { schema: 2, attempts: {}, history: [] };
+        Object.entries((old && old.attempts) || {}).forEach(([id, a]) => {
+            const seed = (typeof a.last === "number") ? a.last : (typeof a.best === "number" ? a.best : null);
+            s.attempts[id] = Object.assign({}, a, {
+                scoreLog: seed != null ? [seed] : [],
+                recent: seed != null ? seed : 0
+            });
+        });
+        return s;
+    }
 
     function loadState() {
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
-            if (raw) state = JSON.parse(raw);
+            if (raw) {
+                state = JSON.parse(raw);
+            } else {
+                const legacy = localStorage.getItem(LEGACY_KEY);
+                if (legacy) { state = migrateV1(JSON.parse(legacy)); saveState(); }
+            }
         } catch (e) { memoryFallback = true; }
+        if (!state || typeof state !== "object") state = {};
         if (!state.attempts) state.attempts = {};
+        if (!Array.isArray(state.history)) state.history = [];
+        state.schema = 2;
     }
+
     function saveState() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
         catch (e) { memoryFallback = true; }
+        updateStorageBanner();
+    }
+
+    function updateStorageBanner() {
+        document.getElementById("storage-banner").style.display = memoryFallback ? "block" : "none";
     }
 
     /* =====================================================================
-       RENDERING
+       RENDER HELPERS
        ===================================================================== */
-    let activeFilter = "All";
+    function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+    function stripHtml(s) { const d = document.createElement("div"); d.innerHTML = s; return d.textContent || ""; }
+
+    function renderHeroStats() {
+        document.getElementById("stat-questions").textContent = QUESTIONS.length;
+        document.getElementById("stat-frameworks").textContent = FRAMEWORKS.length;
+        document.getElementById("stat-categories").textContent = new Set(QUESTIONS.map(q => q.category)).size;
+        document.getElementById("practiced-total").textContent = QUESTIONS.length;
+    }
+
+    let activeCategory = "All";
     let activeDifficulty = "All";
     const DIFFICULTY_ORDER = ["Foundational", "Core", "Advanced", "Expert"];
     function diffClass(d) { return "diff-" + d.toLowerCase(); }
 
-    function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
-
-    function stripHtml(html) {
-        const d = document.createElement("div");
-        d.innerHTML = html;
-        return (d.textContent || d.innerText || "").trim();
-    }
-
-    function buildCoachingPrompt(q, transcript) {
-        const framework = stripHtml(q.deepDive);
-
-        if (q.type === "behavioral") {
-            return `You are an experienced interview coach preparing an MBA candidate for finance leadership roles. Evaluate the candidate's BEHAVIORAL answer below using the CARL framework — Context/Challenge, Action, Result, Learning. Be direct and specific; this is practice, so candor helps far more than praise.
-
-QUESTION (${q.id} · ${q.category} · ${q.difficulty}):
-${q.title}
-
-WHAT A STRONG CARL ANSWER COVERS:
-${framework}
-
-CANDIDATE'S ANSWER (transcribed — may contain speech-to-text artifacts):
-"""
-${transcript.trim()}
-"""
-
-Give feedback in exactly this structure:
-1. VERDICT — one line: interview-ready, close, or needs work.
-2. CARL CHECK — go beat by beat (Context/Challenge, Action, Result, Learning); for each, say whether it's present, missing, or weak, and why.
-3. GAPS — the most important thing missing. Behavioral answers most often skip the Result (no quantified outcome) or the Learning (no reflection); call it out if so.
-4. STRONGER VERSION — model a tighter CARL answer in 4-6 sentences, keeping the candidate's own example.
-5. DELIVERY — structure, pacing, or filler words you notice in the transcript.`;
-        }
-
-        return `You are an experienced corporate finance interview coach preparing an MBA candidate for finance leadership roles (Corporate Finance, Strategic Finance, FP&A). Evaluate the candidate's answer below. Be direct and specific — this is practice, so candor helps far more than praise.
-
-QUESTION (${q.id} · ${q.category} · ${q.difficulty}):
-${q.title}
-
-WHAT A STRONG ANSWER COVERS:
-${framework}
-
-Concepts a complete answer usually touches: ${q.keywords.join(", ")}.
-
-CANDIDATE'S ANSWER (transcribed — may contain speech-to-text artifacts):
-"""
-${transcript.trim()}
-"""
-
-Give feedback in exactly this structure:
-1. VERDICT — one line: interview-ready, close, or needs work.
-2. WHAT LANDED — what they got conceptually right.
-3. GAPS & ERRORS — anything missing, vague, or factually incorrect; name it and correct it.
-4. STRONGER VERSION — 2-4 sentences modeling how a top candidate would tighten this answer.
-5. DELIVERY — structure, pacing, or filler words you notice in the transcript.`;
-    }
-
-    function renderHeroStats() {
-        document.getElementById("stat-questions").innerText = QUESTIONS.length;
-        document.getElementById("stat-frameworks").innerText = FRAMEWORKS.length;
-        const cats = [...new Set(QUESTIONS.map(q => q.category))];
-        document.getElementById("stat-categories").innerText = cats.length;
-        document.getElementById("practiced-total").innerText = QUESTIONS.length;
-    }
-
     function renderFilters() {
-        const bar = document.getElementById("filter-bar");
         const cats = ["All", ...new Set(QUESTIONS.map(q => q.category))];
-        bar.innerHTML = "";
-        cats.forEach(cat => {
-            const b = document.createElement("button");
-            b.className = "filter-btn" + (cat === activeFilter ? " active" : "");
-            b.textContent = cat;
-            b.onclick = () => { activeFilter = cat; renderFilters(); renderQuestions(); };
-            bar.appendChild(b);
+        document.getElementById("filter-bar").innerHTML = cats.map(c =>
+            `<button class="filter-btn ${c === activeCategory ? "active" : ""}" data-cat="${c}">${c}</button>`
+        ).join("");
+        document.querySelectorAll("#filter-bar .filter-btn").forEach(btn => {
+            btn.onclick = () => { activeCategory = btn.dataset.cat; renderFilters(); renderQuestions(); };
         });
     }
 
     function renderDifficultyFilters() {
-        const bar = document.getElementById("difficulty-bar");
         const present = DIFFICULTY_ORDER.filter(d => QUESTIONS.some(q => q.difficulty === d));
-        const opts = ["All", ...present];
-        bar.innerHTML = "";
-        opts.forEach(d => {
-            const b = document.createElement("button");
-            b.className = "filter-btn" + (d === activeDifficulty ? " active" : "");
-            b.textContent = d;
-            b.onclick = () => { activeDifficulty = d; renderDifficultyFilters(); renderQuestions(); };
-            bar.appendChild(b);
+        const tiers = ["All", ...present];
+        document.getElementById("difficulty-bar").innerHTML = tiers.map(d =>
+            `<button class="filter-btn ${d === activeDifficulty ? "active" : ""}" data-diff="${d}">${d}</button>`
+        ).join("");
+        document.querySelectorAll("#difficulty-bar .filter-btn").forEach(btn => {
+            btn.onclick = () => { activeDifficulty = btn.dataset.diff; renderDifficultyFilters(); renderQuestions(); };
         });
     }
 
     function renderQuestions() {
         const grid = document.getElementById("questions-grid");
-        grid.innerHTML = "";
         const list = QUESTIONS.filter(q =>
-            (activeFilter === "All" || q.category === activeFilter) &&
+            (activeCategory === "All" || q.category === activeCategory) &&
             (activeDifficulty === "All" || q.difficulty === activeDifficulty)
         );
-
-        const count = document.getElementById("results-count");
-        if (count) count.textContent = `Showing ${list.length} of ${QUESTIONS.length} questions`;
-
+        document.getElementById("results-count").textContent =
+            `${list.length} question${list.length === 1 ? "" : "s"} shown` +
+            (activeCategory !== "All" ? ` · ${activeCategory}` : "") +
+            (activeDifficulty !== "All" ? ` · ${activeDifficulty}` : "");
         if (!list.length) {
-            grid.innerHTML = `<div class="empty-state">No questions match these filters. Try widening the topic or difficulty.</div>`;
+            grid.innerHTML = `<div class="empty-state">No questions match this combination of filters — try broadening either one.</div>`;
             return;
         }
-
-        list.forEach(q => {
-            const best = state.attempts[q.id] ? state.attempts[q.id].best : null;
-            const isBehavioral = q.type === "behavioral";
-            const methodTag = isBehavioral ? '<span class="tag tag-method">CARL</span>' : "";
-            const convLabel = isBehavioral ? "Model Answer" : "Conversational Answer";
-            const deepLabel = isBehavioral ? "CARL Breakdown" : "Deep Dive";
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
+        grid.innerHTML = list.map(q => {
+            const a = state.attempts[q.id];
+            const rec = a && typeof a.recent === "number" ? a.recent : null;
+            return `
+            <div class="card">
                 <div class="card-header">
                     <div class="meta-tags">
                         <span class="tag tag-cat">${q.category}</span>
                         <span class="tag tag-diff ${diffClass(q.difficulty)}">${q.difficulty}</span>
-                        ${methodTag}
+                        ${q.type === "behavioral" ? `<span class="tag tag-method">CARL</span>` : ""}
                     </div>
-                    <span class="q-id">${q.id}${best != null ? `<span class="q-best">Best ${best}</span>` : ""}</span>
+                    <span class="q-id">${q.id}${rec != null ? `<span class="q-best">Recent ${rec}</span>` : ""}</span>
                 </div>
-                <h3 class="card-title">${q.title}</h3>
+                <div class="card-title">${q.title}</div>
                 <div class="tabs">
-                    <button class="tab-btn active" data-tab="conv">${convLabel}</button>
-                    <button class="tab-btn" data-tab="deep">${deepLabel}</button>
+                    <button class="tab-btn active" data-tab="conv-${q.id}">💬 Conversational</button>
+                    <button class="tab-btn" data-tab="deep-${q.id}">🎯 ${q.type === "behavioral" ? "CARL Coaching" : "Deep Dive"}</button>
                 </div>
-                <div class="tab-content active" data-content="conv">${q.conversational}</div>
-                <div class="tab-content" data-content="deep">${q.deepDive}</div>
+                <div class="tab-content active" id="conv-${q.id}">${q.conversational}</div>
+                <div class="tab-content" id="deep-${q.id}">${q.deepDive}</div>
                 <div class="action-bar">
-                    <button class="btn-outline practice-btn">🎤 Practice &amp; Grade Answer</button>
-                </div>`;
-            // inner tab toggles
-            card.querySelectorAll(".tab-btn").forEach(btn => {
-                btn.onclick = () => {
-                    card.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-                    card.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-                    btn.classList.add("active");
-                    card.querySelector(`[data-content="${btn.dataset.tab}"]`).classList.add("active");
-                };
-            });
-            card.querySelector(".practice-btn").onclick = () => openPractice(q.id);
-            grid.appendChild(card);
+                    <button class="btn-outline" data-practice="${q.id}">🎤 Practice in Studio</button>
+                </div>
+            </div>`;
+        }).join("");
+
+        grid.querySelectorAll(".tab-btn").forEach(btn => {
+            btn.onclick = () => {
+                const card = btn.closest(".card");
+                card.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+                card.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+                btn.classList.add("active");
+                card.querySelector("#" + btn.dataset.tab).classList.add("active");
+            };
+        });
+        grid.querySelectorAll("[data-practice]").forEach(btn => {
+            btn.onclick = () => openPractice(btn.dataset.practice);
         });
     }
 
     function renderFrameworks() {
-        const grid = document.getElementById("frameworks-grid");
-        grid.innerHTML = "";
-        FRAMEWORKS.forEach(fw => {
-            const div = document.createElement("div");
-            div.className = "card fw-card";
-            div.innerHTML = `
-                <h3 class="card-title">${fw.title}</h3>
-                <p class="fw-flow">${fw.flow}</p>
-                <ul class="fw-steps">${fw.steps.map(s => `<li>${s}</li>`).join("")}</ul>`;
-            grid.appendChild(div);
-        });
+        document.getElementById("frameworks-grid").innerHTML = FRAMEWORKS.map(fw => `
+            <div class="card fw-card">
+                <div class="card-title" style="margin-bottom:4px">${fw.title}</div>
+                <div class="fw-flow">${fw.flow}</div>
+                <ol class="fw-steps">${fw.steps.map(s => `<li>${s}</li>`).join("")}</ol>
+            </div>`).join("");
     }
 
     /* =====================================================================
        NAVIGATION
        ===================================================================== */
-    function switchTab(tabId) {
-        document.querySelectorAll(".content-container").forEach(el => el.classList.remove("active"));
-        document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
-        document.getElementById(tabId).classList.add("active");
-        document.querySelector(`.nav-item[data-target="${tabId}"]`).classList.add("active");
+    function switchTab(target) {
+        document.querySelectorAll(".nav-item").forEach(n => n.classList.toggle("active", n.dataset.target === target));
+        document.querySelectorAll(".content-container").forEach(c => c.classList.toggle("active", c.id === target));
+        document.getElementById("hero-section").style.display = target === "dashboard" ? "block" : "none";
+        document.getElementById("main-content").scrollTop = 0;
     }
     document.querySelectorAll(".nav-item").forEach(item => {
         item.addEventListener("click", () => switchTab(item.dataset.target));
@@ -1318,329 +1310,493 @@ Give feedback in exactly this structure:
     /* =====================================================================
        PRACTICE STUDIO
        ===================================================================== */
-    let currentQuestionId = null;
-    let currentKeywordScore = 0;
+    let currentQuestion = null;
+    let lastFocus = null;
+    let attemptStart = null;   // set on first keystroke or first recording start
+    let voiceUsed = false;     // WPM is only meaningful for spoken answers
 
-    function openPractice(qId) {
-        currentQuestionId = qId;
-        const q = QUESTIONS.find(x => x.id === qId);
-        document.getElementById("practice-context").textContent = `${q.id} · ${q.category} — ${q.title}`;
+    function markAttemptStart() { if (!attemptStart) attemptStart = Date.now(); }
+
+    function openPractice(qid) {
+        currentQuestion = QUESTIONS.find(q => q.id === qid);
+        if (!currentQuestion) return;
+        lastFocus = document.activeElement;
+        attemptStart = null;
+        voiceUsed = false;
+        document.getElementById("practice-context").textContent = `${currentQuestion.id} · ${currentQuestion.title}`;
         document.getElementById("transcript-area").value = "";
         document.getElementById("results-panel").style.display = "none";
-        continuousTranscript = "";
+        document.getElementById("length-note").style.display = "none";
         document.getElementById("practice-modal").classList.add("open");
         document.getElementById("transcript-area").focus();
     }
+
     function closePractice() {
+        if (isRecording) stopRecording();
         document.getElementById("practice-modal").classList.remove("open");
-        if (isRecording) toggleRecording();
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
-    /* ---- Speech engine (with support guard + auto-restart) ---- */
+    /* ---- Speech recognition ---- */
     let recognition = null;
     let isRecording = false;
-    let continuousTranscript = "";
-    const speechSupported = ("webkitSpeechRecognition" in window) || ("SpeechRecognition" in window);
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (speechSupported) {
-        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SR();
+    if (SpeechRec) {
+        recognition = new SpeechRec();
         recognition.continuous = true;
         recognition.interimResults = true;
+        recognition.lang = "en-US";
         recognition.onresult = function (event) {
-            let interim = "";
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) continuousTranscript += event.results[i][0].transcript + " ";
-                else interim += event.results[i][0].transcript;
+            let finalText = "";
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) finalText += event.results[i][0].transcript + " ";
             }
-            document.getElementById("transcript-area").value = continuousTranscript + interim;
+            if (finalText) {
+                const area = document.getElementById("transcript-area");
+                area.value = (area.value + " " + finalText).replace(/\s+/g, " ").trim() + " ";
+            }
         };
         recognition.onend = function () { if (isRecording) recognition.start(); };
-        recognition.onerror = function () { /* keep typed text; user can retry */ };
-    } else {
-        const rb = document.getElementById("record-btn");
-        rb.disabled = true;
-        rb.textContent = "🎤 Mic unavailable";
-        document.getElementById("support-note").style.display = "block";
+        recognition.onerror = function (e) {
+            if (e.error === "not-allowed" || e.error === "service-not-allowed" || e.error === "audio-capture") {
+                isRecording = false;
+                const btn = document.getElementById("record-btn");
+                btn.textContent = "🎤 Start Recording";
+                btn.classList.remove("pulse-record");
+                const note = document.getElementById("support-note");
+                note.textContent = "🎤 Microphone access was blocked — allow the mic permission in your browser, or type your answer. Scoring works either way.";
+                note.style.display = "block";
+            }
+        };
+    }
+
+    function stopRecording() {
+        isRecording = false;
+        if (recognition) { try { recognition.stop(); } catch (e) { /* already stopped */ } }
+        const btn = document.getElementById("record-btn");
+        btn.textContent = "🎤 Start Recording";
+        btn.classList.remove("pulse-record");
     }
 
     function toggleRecording() {
-        if (!recognition) return;
+        if (!recognition) {
+            document.getElementById("support-note").style.display = "block";
+            return;
+        }
         const btn = document.getElementById("record-btn");
         if (isRecording) {
-            isRecording = false;
-            recognition.stop();
-            btn.textContent = "🎤 Start Recording";
-            btn.classList.remove("pulse-record");
+            stopRecording();
         } else {
-            const existing = document.getElementById("transcript-area").value;
-            continuousTranscript = existing ? existing + " " : "";
-            try { recognition.start(); } catch (e) {}
             isRecording = true;
-            btn.textContent = "⏹️ Stop Recording";
+            voiceUsed = true;
+            markAttemptStart();
+            try { recognition.start(); } catch (e) { /* already started */ }
+            btn.textContent = "⏹ Stop Recording";
             btn.classList.add("pulse-record");
         }
     }
 
-    /* ---- Scoring ---- */
+    /* ---- Keyword normalization ----
+       Speech transcripts never contain "/", "&", or "-", so both the transcript
+       and each keyword are normalized (separators → spaces) and each keyword
+       also generates spoken variants: "ev/ebitda" → "ev ebitda", "evebitda",
+       "ev to ebitda"; "sg&a" → "sg a", "sga", "sg and a". */
+    function normalizeForMatch(s) {
+        return s.toLowerCase()
+            .replace(/[\u2014\u2013]/g, " ")
+            .replace(/[\/&\-]/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    function keywordVariants(kw) {
+        const lower = kw.toLowerCase();
+        const set = new Set();
+        const base = normalizeForMatch(lower);
+        set.add(base);
+        set.add(base.replace(/ /g, ""));                       // squashed: "p e" → "pe"
+        set.add(normalizeForMatch(lower.replace(/&/g, " and "))); // "sg&a" → "sg and a"
+        set.add(normalizeForMatch(lower.replace(/\//g, " to "))); // "ev/ebitda" → "ev to ebitda"
+        return [...set].filter(v => v.length > 1 || base.length === 1);
+    }
+
+    /* ---- Grading ---- */
+    function countFillers(rawLower) {
+        let fillerHits = 0;
+        SCORING.fillers.forEach(f => {
+            const m = rawLower.match(new RegExp("\\b" + escRe(f) + "\\b", "g"));
+            if (m) fillerHits += m.length;
+        });
+        return fillerHits;
+    }
+
     function gradeAnswer(text, keywords) {
-        const lower = text.toLowerCase();
-        const wordCount = lower.split(/\s+/).filter(w => w.length > 0).length;
+        const rawLower = text.toLowerCase();
+        const norm = normalizeForMatch(text);
+        const words = rawLower.split(/\s+/).filter(w => w.length > 0);
+        const wordCount = words.length;
 
         const hits = [], misses = [];
         keywords.forEach(kw => {
-            const re = new RegExp("\\b" + escRe(kw.toLowerCase()) + "\\b");
-            (re.test(lower) ? hits : misses).push(kw);
+            const found = keywordVariants(kw).some(v =>
+                new RegExp("\\b" + escRe(v) + "\\b").test(norm));
+            (found ? hits : misses).push(kw);
         });
 
-        let fillerHits = 0;
-        SCORING.fillers.forEach(fw => {
-            const m = lower.match(new RegExp("\\b" + escRe(fw) + "\\b", "g"));
-            if (m) fillerHits += m.length;
-        });
-
+        const fillerHits = countFillers(rawLower);
         let score = SCORING.baseScore;
         score += Math.min(SCORING.lengthBonusMax, (wordCount / SCORING.targetWords) * SCORING.lengthBonusMax);
         score += Math.min(SCORING.keywordBonusMax, hits.length * SCORING.keywordPoints);
         score -= fillerHits * SCORING.fillerPenalty;
         score = Math.max(0, Math.min(100, Math.round(score)));
 
-        return { score, wordCount, fillerHits, hits, misses };
+        return { score, wordCount, hits, misses, fillerHits, mode: "technical" };
     }
 
     function gradeBehavioral(text) {
-        const lower = text.toLowerCase();
-        const wordCount = lower.split(/\s+/).filter(w => w.length > 0).length;
+        const rawLower = text.toLowerCase();
+        const words = rawLower.split(/\s+/).filter(w => w.length > 0);
+        const wordCount = words.length;
 
-        const carlHits = [], carlMisses = [];
-        CARL.forEach(c => {
-            const found = c.patterns.some(p => new RegExp(p).test(lower));
-            (found ? carlHits : carlMisses).push(c);
+        const hits = [], misses = [];
+        CARL.forEach(beat => {
+            const found = beat.patterns.some(p => new RegExp(p, "i").test(rawLower));
+            (found ? hits : misses).push(beat.label);
         });
 
-        let fillerHits = 0;
-        SCORING.fillers.forEach(fw => {
-            const m = lower.match(new RegExp("\\b" + escRe(fw) + "\\b", "g"));
-            if (m) fillerHits += m.length;
-        });
-
-        // Each CARL beat present = 25 points; lighter filler penalty; brevity check
-        let score = carlHits.length * 25;
+        const fillerHits = countFillers(rawLower);
+        let score = hits.length * 25;
         score -= fillerHits * 2;
         if (wordCount < 40) score -= 10;
         score = Math.max(0, Math.min(100, Math.round(score)));
 
-        return { behavioral: true, score, wordCount, fillerHits, carlHits, carlMisses };
+        return { score, wordCount, hits, misses, fillerHits, mode: "behavioral" };
     }
 
+    /* ---- Coaching prompt ---- */
+    function buildCoachingPrompt(q, transcript) {
+        if (q.type === "behavioral") {
+            return `You are an executive interview coach for MBA candidates pursuing corporate finance leadership roles. Evaluate my answer to this behavioral interview question using the CARL framework (Context/Challenge, Action, Result, Learning).
+
+QUESTION: "${q.title}"
+
+WHAT A STRONG ANSWER COVERS:
+${stripHtml(q.deepDive)}
+
+MY ANSWER (transcribed):
+"${transcript}"
+
+Please give me:
+1. A score out of 10 with one-sentence justification.
+2. Which CARL beats landed and which are weak or missing.
+3. Whether my Action section is specific and first-person enough ("I" not "we").
+4. Whether my Result is quantified — and if not, what I could quantify.
+5. A tightened 60-90 second version of my answer I could deliver aloud.
+Be direct. Don't soften weaknesses.`;
+        }
+        return `You are a corporate finance interview coach for MBA candidates. Evaluate my spoken answer to this technical interview question.
+
+QUESTION: "${q.title}"
+
+WHAT A STRONG ANSWER COVERS:
+${stripHtml(q.deepDive)}
+
+KEY CONCEPTS AN INTERVIEWER LISTENS FOR: ${q.keywords.join(", ")}
+
+MY ANSWER (transcribed):
+"${transcript}"
+
+Please give me:
+1. A score out of 10 with one-sentence justification.
+2. Any technical errors or imprecise claims — quote my exact words.
+3. The most important missing concept and one sentence I could add to cover it.
+4. A tightened 60-second version of my answer I could deliver aloud.
+Be direct. Don't soften weaknesses.`;
+    }
+
+    /* ---- Submit & results ---- */
     function submitForAI() {
-        if (isRecording) toggleRecording();
-        const text = document.getElementById("transcript-area").value;
-        if (text.trim().length < 30) {
-            const note = document.getElementById("support-note");
-            note.style.display = "block";
-            note.textContent = "✋ Answer too short — give the engine a fuller response (aim for a few sentences).";
+        const text = document.getElementById("transcript-area").value.trim();
+        const lengthNote = document.getElementById("length-note");
+        if (text.length < 30) {
+            lengthNote.textContent = "✍️ Answer is too short to score meaningfully — aim for at least a few sentences.";
+            lengthNote.style.display = "block";
             return;
         }
-        const q = QUESTIONS.find(x => x.id === currentQuestionId);
-        const r = (q.type === "behavioral") ? gradeBehavioral(text) : gradeAnswer(text, q.keywords);
+        lengthNote.style.display = "none";
+        if (isRecording) stopRecording();
 
-        // persist per-question (keep best + history of fillers for comm bar)
-        const a = state.attempts[q.id] || { best: 0, last: 0, count: 0, fillerLog: [] };
-        a.count += 1;
+        const q = currentQuestion;
+        const r = q.type === "behavioral" ? gradeBehavioral(text) : gradeAnswer(text, q.keywords);
+
+        const elapsedSec = attemptStart ? Math.max(1, Math.round((Date.now() - attemptStart) / 1000)) : null;
+        r.elapsedSec = elapsedSec;
+        r.wpm = (voiceUsed && elapsedSec && elapsedSec >= 10)
+            ? Math.round(r.wordCount / (elapsedSec / 60)) : null;
+
+        // Persist
+        const a = state.attempts[q.id] || { best: 0, last: 0, count: 0, fillerLog: [], scoreLog: [] };
+        a.count++;
         a.last = r.score;
-        a.best = Math.max(a.best, r.score);
+        a.best = Math.max(a.best || 0, r.score);
+        a.scoreLog = (a.scoreLog || []).concat(r.score).slice(-10);
+        const recentWindow = a.scoreLog.slice(-3);
+        a.recent = Math.round(recentWindow.reduce((s, v) => s + v, 0) / recentWindow.length);
         a.competency = q.competency;
-        a.fillerLog.push(r.fillerHits);
+        a.fillerLog = (a.fillerLog || []).concat(r.fillerHits);
         state.attempts[q.id] = a;
-        state.lastScore = r.score;
+        state.history = (state.history || []).concat({ s: r.score, t: Date.now() }).slice(-12);
         saveState();
 
-        showResults(r, text);
+        showResults(r, q, text);
         updateDashboard();
-        renderQuestions(); // refresh "Best" badges
-    }
-
-    function showResults(r, transcript) {
-        document.getElementById("result-score").textContent = r.score;
-        document.getElementById("result-score").style.borderColor = tierColor(r.score);
-        document.getElementById("m-words").textContent = r.wordCount;
-        document.getElementById("m-fillers").textContent = r.fillerHits;
-
-        const midVal = document.getElementById("m-keywords");
-        const midLabel = document.getElementById("m-mid-label");
-        const kwEl = document.getElementById("kw-breakdown");
-
-        if (r.behavioral) {
-            midLabel.textContent = "CARL Parts";
-            midVal.textContent = `${r.carlHits.length}/4`;
-            kwEl.innerHTML = CARL.map(c => {
-                const hit = r.carlHits.includes(c);
-                return `<div style="margin-top:4px"><span class="${hit ? "kw-hit" : "kw-miss"}">${hit ? "✓" : "○"} ${c.label}</span></div>`;
-            }).join("");
-        } else {
-            midLabel.textContent = "Keywords Hit";
-            midVal.textContent = `${r.hits.length}/${r.hits.length + r.misses.length}`;
-            let html = "";
-            if (r.hits.length) html += `<span class="kw-hit">✓ Mentioned:</span> ${r.hits.join(", ")}<br>`;
-            if (r.misses.length) html += `<span class="kw-miss">○ Try to work in:</span> ${r.misses.join(", ")}`;
-            kwEl.innerHTML = html;
-        }
-
-        const q = QUESTIONS.find(x => x.id === currentQuestionId);
-        document.getElementById("coaching-prompt").value = buildCoachingPrompt(q, transcript);
-
-        // reset model-answer / self-score controls for this attempt
-        currentKeywordScore = r.score;
-        document.getElementById("model-answer").style.display = "none";
-        document.getElementById("self-rate").style.display = "none";
-        document.getElementById("reveal-model").style.display = "inline-block";
-        document.querySelectorAll(".rate-btn").forEach(b => b.classList.remove("selected"));
-        const cal = document.getElementById("calibration-note");
-        cal.classList.remove("show");
-        cal.innerHTML = "";
-
-        document.getElementById("results-panel").style.display = "block";
+        renderQuestions();
     }
 
     function tierColor(score) {
         if (score >= 90) return "var(--success)";
-        if (score >= 75) return "#5BC97A";
-        if (score >= 60) return "var(--accent)";
-        return "var(--primary)";
+        if (score >= 75) return "var(--accent)";
+        if (score >= 60) return "var(--warning)";
+        return "var(--danger)";
+    }
+
+    function formatDuration(sec) {
+        if (sec == null) return "—";
+        const m = Math.floor(sec / 60), s = sec % 60;
+        return m + ":" + String(s).padStart(2, "0");
+    }
+
+    function showResults(r, q, transcript) {
+        const panel = document.getElementById("results-panel");
+        panel.style.display = "block";
+        const scoreEl = document.getElementById("result-score");
+        scoreEl.textContent = r.score;
+        scoreEl.style.borderColor = tierColor(r.score);
+        document.getElementById("m-words").textContent = r.wordCount;
+        document.getElementById("m-keywords").textContent = r.hits.length + "/" + (r.hits.length + r.misses.length);
+        document.getElementById("m-mid-label").textContent = r.mode === "behavioral" ? "CARL Beats" : "Keywords Hit";
+        document.getElementById("m-fillers").textContent = r.fillerHits;
+        document.getElementById("m-duration").textContent = formatDuration(r.elapsedSec);
+        document.getElementById("m-wpm").textContent = r.wpm != null ? r.wpm : "—";
+
+        const label = r.mode === "behavioral" ? "beat" : "concept";
+        document.getElementById("kw-breakdown").innerHTML =
+            (r.hits.length ? `<span class="kw-hit">✔ Covered: ${r.hits.join(", ")}</span><br>` : "") +
+            (r.misses.length ? `<span class="kw-miss">✘ Missing ${label}${r.misses.length > 1 ? "s" : ""}: ${r.misses.join(", ")}</span>` : `<span class="kw-hit">Every ${label} covered — strong coverage.</span>`);
+
+        const pacing = [];
+        if (r.wpm != null) {
+            if (r.wpm > 170) pacing.push(`⏩ ${r.wpm} WPM is rushed — interviewers process at ~130-150. Breathe between points.`);
+            else if (r.wpm < 110) pacing.push(`🐢 ${r.wpm} WPM is on the slow side — tighten pauses so the answer keeps momentum.`);
+            else pacing.push(`✔ ${r.wpm} WPM is a strong interview pace.`);
+        } else if (r.elapsedSec != null) {
+            pacing.push("⌨️ Pace (WPM) is shown for spoken answers only — typing speed isn't interview pacing.");
+        }
+        if (r.elapsedSec != null && r.elapsedSec > 150) {
+            pacing.push("⏱ Over 2½ minutes — most interview answers should land in 60-120 seconds. Trim the wind-up.");
+        }
+        document.getElementById("pacing-note").innerHTML = pacing.join("<br>");
+
+        document.getElementById("coaching-prompt").value = buildCoachingPrompt(q, transcript);
+        document.getElementById("copy-confirm").style.display = "none";
+        document.getElementById("model-answer").style.display = "none";
+        document.getElementById("model-answer").innerHTML = "";
+        document.getElementById("reveal-model").style.display = "inline-block";
+        document.getElementById("self-rate").style.display = "none";
+        document.querySelectorAll(".rate-btn").forEach(b => b.classList.remove("selected"));
+        document.getElementById("calibration-note").classList.remove("show");
+
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
     /* =====================================================================
-       DASHBOARD
+       DASHBOARD  — driven by RECENT performance (avg of last 3 attempts per
+       question), not best-ever, so the readiness score reflects where you
+       are now rather than your single luckiest run.
        ===================================================================== */
     function competencyAvg(comp) {
-        const vals = Object.values(state.attempts).filter(a => a.competency === comp).map(a => a.best);
-        if (!vals.length) return 0;
-        return Math.round(vals.reduce((s, v) => s + v, 0) / vals.length);
-    }
-    function avgSelf() {
-        const vals = Object.values(state.attempts).map(a => a.self).filter(v => typeof v === "number");
-        if (!vals.length) return null;
-        return vals.reduce((s, v) => s + v, 0) / vals.length;
+        const scores = Object.values(state.attempts)
+            .filter(a => a.competency === comp)
+            .map(a => (typeof a.recent === "number" ? a.recent : a.best || 0));
+        if (!scores.length) return 0;
+        return Math.round(scores.reduce((s, v) => s + v, 0) / scores.length);
     }
 
-    function avgFillers() {
-        const logs = Object.values(state.attempts).flatMap(a => a.fillerLog || []);
-        if (!logs.length) return 0;
-        return logs.reduce((s, v) => s + v, 0) / logs.length;
+    function trendText() {
+        const h = (state.history || []).map(x => x.s);
+        if (h.length === 0) return "Start practicing…";
+        if (h.length < 4) return "Building a baseline…";
+        const avg = arr => arr.reduce((s, v) => s + v, 0) / arr.length;
+        const recent = h.slice(-3);
+        const prior = h.length >= 6 ? h.slice(-6, -3) : h.slice(0, -3);
+        const d = Math.round(avg(recent) - avg(prior));
+        if (d >= 4) return `Improving 📈 (+${d})`;
+        if (d <= -4) return `Slipping 📉 (${d})`;
+        return "Holding steady ➡️";
     }
 
     function updateDashboard() {
         const attempts = Object.values(state.attempts);
         const practiced = attempts.length;
-        const totalAttempts = attempts.reduce((s, a) => s + a.count, 0);
+        const totalAttempts = attempts.reduce((s, a) => s + (a.count || 0), 0);
+        const recents = attempts.map(a => (typeof a.recent === "number" ? a.recent : a.best || 0));
+        const overall = recents.length ? Math.round(recents.reduce((s, v) => s + v, 0) / recents.length) : 0;
 
-        const bests = attempts.map(a => a.best);
-        const overall = bests.length ? Math.round(bests.reduce((s, v) => s + v, 0) / bests.length) : 0;
+        const circle = document.getElementById("overall-score");
+        circle.textContent = overall;
+        circle.style.borderColor = tierColor(overall);
 
-        document.getElementById("practiced-count").innerText = practiced;
-        document.getElementById("attempt-count").innerText = totalAttempts;
-        document.getElementById("overall-score").innerText = overall;
-        document.getElementById("overall-score").style.borderColor = tierColor(overall);
+        const level = document.getElementById("readiness-level");
+        if (!practiced) level.textContent = "Not Evaluated";
+        else if (overall >= 90) level.textContent = "Offer Ready 🏆";
+        else if (overall >= 80) level.textContent = "Interview Ready ✅";
+        else if (overall >= 60) level.textContent = "Developing 📈";
+        else level.textContent = "Emerging 🌱";
 
-        const af = avgFillers();
-        const fillerEl = document.getElementById("avg-fillers");
-        fillerEl.innerText = af.toFixed(1);
-        fillerEl.style.color = af > 2 ? "var(--warning)" : "var(--success)";
+        document.getElementById("practiced-count").textContent = practiced;
+        document.getElementById("attempt-count").textContent = totalAttempts;
 
-        const as = avgSelf();
-        const ratedCount = Object.values(state.attempts).filter(a => typeof a.self === "number").length;
-        document.getElementById("avg-self").innerText = as == null ? "—" : `${as.toFixed(1)} / 4 (${ratedCount} rated)`;
+        const allFillers = attempts.flatMap(a => a.fillerLog || []);
+        const avgF = allFillers.length ? (allFillers.reduce((s, v) => s + v, 0) / allFillers.length).toFixed(1) : "0";
+        document.getElementById("avg-fillers").textContent = avgF;
 
-        let level = "Not Evaluated";
-        if (practiced > 0) {
-            level = "Emerging";
-            if (overall >= 60) level = "Developing";
-            if (overall >= 80) level = "Interview Ready";
-            if (overall >= 90) level = "Offer Ready";
-        }
-        document.getElementById("readiness-level").innerText = level;
+        const selves = attempts.map(a => a.self).filter(v => typeof v === "number");
+        document.getElementById("avg-self").textContent = selves.length
+            ? (selves.reduce((s, v) => s + v, 0) / selves.length).toFixed(1) + " / 4"
+            : "—";
 
-        let trend = "Start practicing…";
-        if (state.lastScore != null) trend = state.lastScore >= 75 ? "Upward Momentum 📈" : "Needs Structure 📉";
-        document.getElementById("trend-text").innerText = trend;
+        document.getElementById("trend-text").textContent = trendText();
 
-        const modeling = competencyAvg("modeling");
-        const strategy = competencyAvg("strategy");
-        // Communication bar blends delivery pacing (filler rate) with behavioral
-        // CARL structure scores when behavioral questions have been practiced.
-        const pacing = practiced ? Math.max(0, Math.min(100, Math.round(100 - af * 10))) : 0;
-        const behavioralCount = Object.values(state.attempts).filter(a => a.competency === "communication").length;
-        const comm = behavioralCount
-            ? Math.round((pacing + competencyAvg("communication")) / 2)
-            : pacing;
-
-        document.getElementById("bar-modeling").style.width = modeling + "%";
-        document.getElementById("bar-strategy").style.width = strategy + "%";
+        document.getElementById("bar-modeling").style.width = competencyAvg("modeling") + "%";
+        document.getElementById("bar-strategy").style.width = competencyAvg("strategy") + "%";
+        const commBehavioral = competencyAvg("communication");
+        const pacingScore = Math.max(0, 100 - parseFloat(avgF) * 10);
+        const comm = commBehavioral > 0 ? Math.round((commBehavioral + pacingScore) / 2)
+                                        : (practiced ? Math.round(pacingScore) : 0);
         document.getElementById("bar-comm").style.width = comm + "%";
     }
 
     /* =====================================================================
-       RESET (custom confirm)
+       ACTIONS — coaching, model answer, self-rate, reset, export/import
        ===================================================================== */
-    function openConfirm() { document.getElementById("confirm-modal").classList.add("open"); }
-    function closeConfirm() { document.getElementById("confirm-modal").classList.remove("open"); }
-
-    /* ---- AI Coaching Prompt actions ---- */
     function copyCoaching() {
         const ta = document.getElementById("coaching-prompt");
-        const confirm = document.getElementById("copy-confirm");
-        const done = () => { confirm.style.display = "inline"; setTimeout(() => confirm.style.display = "none", 2000); };
-        ta.focus();
         ta.select();
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(ta.value).then(done).catch(() => { try { document.execCommand("copy"); } catch (e) {} done(); });
-        } else {
-            try { document.execCommand("copy"); } catch (e) {}
-            done();
-        }
+        navigator.clipboard.writeText(ta.value).then(() => {
+            document.getElementById("copy-confirm").style.display = "inline";
+            setTimeout(() => { document.getElementById("copy-confirm").style.display = "none"; }, 2500);
+        }).catch(() => { document.execCommand("copy"); });
     }
-    function openClaude() { window.open("https://claude.ai/new", "_blank", "noopener"); }
 
-    /* ---- Model answer reveal + self-score ---- */
     function revealModel() {
-        const q = QUESTIONS.find(x => x.id === currentQuestionId);
-        const ma = document.getElementById("model-answer");
-        ma.innerHTML = `<strong style="color:var(--accent)">Model answer</strong><br>${q.conversational}`
-            + `<br><br><strong style="color:var(--accent)">Going deeper</strong><br>${q.deepDive}`;
-        ma.style.display = "block";
-        document.getElementById("self-rate").style.display = "block";
+        const q = currentQuestion;
+        document.getElementById("model-answer").innerHTML =
+            `<strong style="color:var(--accent)">Model framing:</strong> ${q.conversational}<br><br>${q.deepDive}`;
+        document.getElementById("model-answer").style.display = "block";
         document.getElementById("reveal-model").style.display = "none";
+        document.getElementById("self-rate").style.display = "block";
     }
 
-    function selectSelfRate(rate, btn) {
-        document.querySelectorAll(".rate-btn").forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
-
-        const a = state.attempts[currentQuestionId];
+    function selectSelfRate(rate) {
+        document.querySelectorAll(".rate-btn").forEach(b =>
+            b.classList.toggle("selected", parseInt(b.dataset.rate, 10) === rate));
+        const q = currentQuestion;
+        const a = state.attempts[q.id];
         if (a) { a.self = rate; saveState(); }
 
-        // Reconcile the candidate's self-rating against the keyword heuristic
-        const kwBand = currentKeywordScore >= 90 ? 4 : currentKeywordScore >= 75 ? 3 : currentKeywordScore >= 60 ? 2 : 1;
+        const kw = a ? a.last : 0;
+        const kwBand = kw >= 90 ? 4 : kw >= 75 ? 3 : kw >= 60 ? 2 : 1;
+        const note = document.getElementById("calibration-note");
         let msg;
-        if (rate > kwBand) {
-            msg = `<strong>Check your calibration.</strong> You rated yourself a ${rate}, but the keyword check landed near a ${kwBand}. Make sure you're saying the specific frameworks out loud — knowing them isn't the same as the interviewer hearing them.`;
-        } else if (rate < kwBand) {
-            msg = `<strong>You may be underselling.</strong> You rated yourself a ${rate}, but your keyword coverage landed near a ${kwBand}. The substance was there — if it felt shaky, that's usually structure or delivery, not knowledge.`;
+        if (rate > kwBand + 1) {
+            msg = `<strong>Calibration check:</strong> You rated yourself ${rate}/4, but the coverage score landed in the ${kwBand}/4 band. Confidence is good — just make sure the specific concepts an interviewer listens for are actually in the answer, not just implied.`;
+        } else if (rate < kwBand - 1) {
+            msg = `<strong>Calibration check:</strong> You rated yourself ${rate}/4, but your coverage score landed in the ${kwBand}/4 band. You may be underselling yourself — a common pattern that also shows up in interviews. Own what you covered.`;
         } else {
-            msg = `<strong>Well calibrated.</strong> Your self-rating (${rate}) matches the keyword check (${kwBand}). Honest self-assessment like this is exactly what holds up in a real interview.`;
+            msg = `<strong>Well calibrated.</strong> Your self-rating matches your coverage — that self-awareness is exactly what "walk me through your thinking" questions test.`;
         }
-        const cal = document.getElementById("calibration-note");
-        cal.innerHTML = msg;
-        cal.classList.add("show");
+        note.innerHTML = msg;
+        note.classList.add("show");
         updateDashboard();
     }
+
+    function openConfirm() { lastFocus = document.activeElement; document.getElementById("confirm-modal").classList.add("open"); }
+    function closeConfirm() {
+        document.getElementById("confirm-modal").classList.remove("open");
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
     function doReset() {
-        state = { attempts: {}, lastScore: null };
+        state = { schema: 2, attempts: {}, history: [] };
         saveState();
+        try { localStorage.removeItem(LEGACY_KEY); } catch (e) { /* ignore */ }
         updateDashboard();
         renderQuestions();
         closeConfirm();
+    }
+
+    /* ---- Export / Import ---- */
+    function exportProgress() {
+        const payload = { app: "eccles-cf-playbook", schema: 2, exportedAt: new Date().toISOString(), state: state };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "cf-playbook-progress.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    let pendingImport = null;
+    function openImportConfirm(summaryHtml, valid) {
+        lastFocus = document.activeElement;
+        document.getElementById("import-summary").innerHTML = summaryHtml;
+        document.getElementById("confirm-import").style.display = valid ? "inline-block" : "none";
+        document.getElementById("import-modal").classList.add("open");
+    }
+    function closeImport() {
+        pendingImport = null;
+        document.getElementById("import-modal").classList.remove("open");
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
+    function handleImportFile(file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                const parsed = JSON.parse(reader.result);
+                const candidate = (parsed && parsed.state && typeof parsed.state.attempts === "object") ? parsed.state
+                                : (parsed && typeof parsed.attempts === "object") ? parsed
+                                : null;
+                if (!candidate) {
+                    openImportConfirm("⚠️ That file doesn't look like a playbook progress export — no attempt data found.", false);
+                    return;
+                }
+                pendingImport = {
+                    schema: 2,
+                    attempts: candidate.attempts || {},
+                    history: Array.isArray(candidate.history) ? candidate.history : []
+                };
+                const qCount = Object.keys(pendingImport.attempts).length;
+                const tCount = Object.values(pendingImport.attempts).reduce((s, a) => s + (a.count || 0), 0);
+                const when = parsed.exportedAt ? new Date(parsed.exportedAt).toLocaleDateString() : "an unknown date";
+                openImportConfirm(`This file contains <strong style="color:#fff">${qCount}</strong> practiced questions and <strong style="color:#fff">${tCount}</strong> total attempts, exported ${when}.<br><br>Importing will <strong style="color:var(--danger)">replace</strong> all progress currently on this device.`, true);
+            } catch (e) {
+                openImportConfirm("⚠️ Couldn't read that file — it isn't valid JSON.", false);
+            }
+        };
+        reader.readAsText(file);
+    }
+    function confirmImport() {
+        if (!pendingImport) { closeImport(); return; }
+        state = pendingImport;
+        pendingImport = null;
+        saveState();
+        updateDashboard();
+        renderQuestions();
+        document.getElementById("import-modal").classList.remove("open");
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
     /* =====================================================================
@@ -1649,29 +1805,51 @@ Give feedback in exactly this structure:
     document.getElementById("close-practice").onclick = closePractice;
     document.getElementById("record-btn").onclick = toggleRecording;
     document.getElementById("submit-btn").onclick = submitForAI;
+    document.getElementById("copy-coaching").onclick = copyCoaching;
+    document.getElementById("open-claude").onclick = () => window.open("https://claude.ai/new", "_blank");
+    document.getElementById("reveal-model").onclick = revealModel;
+    document.querySelectorAll(".rate-btn").forEach(b => {
+        b.onclick = () => selectSelfRate(parseInt(b.dataset.rate, 10));
+    });
     document.getElementById("reset-btn").onclick = openConfirm;
     document.getElementById("confirm-reset").onclick = doReset;
     document.getElementById("cancel-reset").onclick = closeConfirm;
-    document.getElementById("copy-coaching").onclick = copyCoaching;
-    document.getElementById("open-claude").onclick = openClaude;
-    document.getElementById("reveal-model").onclick = revealModel;
-    document.querySelectorAll(".rate-btn").forEach(btn => {
-        btn.onclick = () => selectSelfRate(parseInt(btn.dataset.rate, 10), btn);
+    document.getElementById("export-btn").onclick = exportProgress;
+    document.getElementById("import-btn").onclick = () => document.getElementById("import-file").click();
+    document.getElementById("import-file").addEventListener("change", function () {
+        if (this.files && this.files[0]) handleImportFile(this.files[0]);
+        this.value = ""; // allow re-importing the same file
     });
+    document.getElementById("confirm-import").onclick = confirmImport;
+    document.getElementById("cancel-import").onclick = closeImport;
+    document.getElementById("transcript-area").addEventListener("input", markAttemptStart);
 
-    // Click backdrop or press Escape to close modals
+    if (!SpeechRec) {
+        document.getElementById("support-note").style.display = "block";
+        document.getElementById("record-btn").disabled = true;
+    }
+
+    // Backdrop clicks route through the real close functions (stops any
+    // active recording and restores focus) instead of just hiding the modal.
+    function closeModalById(id) {
+        if (id === "practice-modal") closePractice();
+        else if (id === "confirm-modal") closeConfirm();
+        else if (id === "import-modal") closeImport();
+    }
     document.querySelectorAll(".modal").forEach(m => {
-        m.addEventListener("click", e => { if (e.target === m) m.classList.remove("open"); });
+        m.addEventListener("click", e => { if (e.target === m) closeModalById(m.id); });
     });
     document.addEventListener("keydown", e => {
         if (e.key === "Escape") {
             if (document.getElementById("practice-modal").classList.contains("open")) closePractice();
-            closeConfirm();
+            if (document.getElementById("confirm-modal").classList.contains("open")) closeConfirm();
+            if (document.getElementById("import-modal").classList.contains("open")) closeImport();
         }
     });
 
-    // Init
+    /* ---- Init ---- */
     loadState();
+    updateStorageBanner();
     renderHeroStats();
     renderFilters();
     renderDifficultyFilters();
