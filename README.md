@@ -1,283 +1,114 @@
-# 📊 Corporate Finance Leadership Interview Playbook
+# Corporate Finance Leadership Interview Playbook
+
 **Full-Time MBA Program · David Eccles School of Business**
 
-> A self-contained, browser-based practice tool for MBA candidates preparing for **Corporate Finance, Strategic Finance, and FP&A leadership interviews.** Built for the University of Utah David Eccles School of Business MBA program.
+A self-contained interview preparation tool for MBA candidates pursuing corporate finance leadership roles. It combines a 100-question interview bank, six core finance frameworks, and an AI-assisted practice studio with voice recording, instant scoring, and a readiness dashboard that tracks your progress over time.
 
 ---
 
-**Live Playbook ▶ [Intv Playbook – Corporate Finance (vG)](https://coryjburk.github.io/intv-playbook-corp_finc-vg-/)**
+**Live Playbook ▶ [Intv Playbook – Corporate Finance (vG)](https://coryjburk.github.io/intv-playbook-corp-finc_vc/)**
 
----
-
-A 100-question bank paired with a practice studio that scores your spoken or typed answers, generates a tailored AI coaching prompt, lets you self-assess against model answers, and tracks your readiness over time. It's a single HTML file with no dependencies and no build step — open it locally or deploy it to GitHub Pages as-is.
-
----
-
-## Features
-
-- **100 questions** across **9 categories** and **4 difficulty tiers** (Foundational → Core → Advanced → Expert).
-- **Practice studio** with speech-to-text dictation or typing, plus instant scoring.
-- **Two scoring engines** — keyword coverage for technical questions, and the **CARL** framework (Context · Action · Result · Learning) for behavioral questions.
-- **AI Coaching Prompt generator** — one click builds a prompt (question + model framework + your answer) to paste into Claude for real feedback on quality and correctness.
-- **Model-answer reveal** with a **1–4 self-score** and a calibration note that compares how you rated yourself to the keyword evidence.
-- **Readiness Dashboard** with competency bars and performance logs, saved locally on your device.
-- **Topic + difficulty filters** that combine, with a live result count.
-- **Single file, no build, GitHub Pages-ready.**
-
----
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [The Three Sections](#the-three-sections)
-- [The Question Bank](#the-question-bank)
-- [The Practice Studio](#the-practice-studio)
-- [How Scoring Works](#how-scoring-works)
-- [AI Coaching Prompt](#ai-coaching-prompt)
-- [Model Answer and Self-Scoring](#model-answer-and-self-scoring)
-- [The Readiness Dashboard](#the-readiness-dashboard)
-- [Things You Might Notice (and Why)](#things-you-might-notice-and-why)
-- [Tips for Best Results](#tips-for-best-results)
-- [Troubleshooting](#troubleshooting)
-- [Deployment](#deployment)
-- [Repository Structure](#repository-structure)
-- [Editing the Question Bank](#editing-the-question-bank)
-- [Tech Notes](#tech-notes)
-- [About](#about)
+_The entire application is a single HTML file. There is no build step, no server, and no account — it runs completely in your browser, and your practice data never leaves your device._
 
 ---
 
 ## Quick Start
 
-1. Open the tool in **Chrome or Edge** (see the speech note under [Things You Might Notice](#things-you-might-notice-and-why)).
-2. Click **Question Bank** in the left sidebar.
-3. Pick any question and read the answer tabs to learn the structure.
-4. Click **Practice & Grade Answer**, then speak or type your own answer.
-5. Click **Submit for AI Evaluation** for a score, a keyword (or CARL) breakdown, a copy-ready AI coaching prompt, and the option to reveal the model answer and rate yourself.
-6. Check the **Readiness Dashboard** to watch your progress build over time.
+Open `cf-playbook.html` in a modern browser (Chrome or Edge recommended for voice practice), or visit the hosted version on GitHub Pages. Click **Question Bank** in the sidebar, pick a question, and press **🎤 Practice in Studio**. Speak or type your answer, submit it for evaluation, and watch your Readiness Dashboard build as you practice.
 
-Your progress saves automatically on the device you're using.
+That's the whole workflow. The rest of this manual explains what each part does and how the scoring works.
 
 ---
 
 ## The Three Sections
 
-The left sidebar has three areas:
+**Readiness Dashboard** is the home screen. It shows your overall readiness score, per-competency progress bars (Financial Modeling & Valuation, Strategic Finance, Communication & Pacing), and performance logs including total attempts, average filler words, average self-assessment, and your recent trend.
 
-- **Readiness Dashboard** — your overall readiness score, competency breakdown, and practice logs.
-- **Question Bank** — all 100 questions, filterable by topic and difficulty.
-- **Finance Frameworks** — six core structured-thinking blueprints (3-statement linking, DCF build order, WACC components, LBO value levers, capital allocation hierarchy, variance bridge) to know cold.
+**Question Bank** holds all 100 questions across 9 categories — Valuation, Accounting & 3-Statement, M&A & Corporate Development, Financial Modeling, Capital Allocation & Corp Finance, FP&A & Strategic Finance, Treasury, Markets & Risk, Strategy & Business Judgment, and Behavioral & Leadership. Two filter rows let you narrow by topic and by difficulty tier (Foundational → Core → Advanced → Expert). Each card offers a **Conversational** answer (how you'd say it aloud) and a **Deep Dive** (the full technical structure). Behavioral questions carry a CARL tag and are coached on story structure instead of keywords.
 
----
-
-## The Question Bank
-
-### Filtering
-
-Two filter rows work together:
-
-- **Topic** — the nine categories, from Valuation and Accounting to Behavioral & Leadership.
-- **Difficulty** — Foundational, Core, Advanced, Expert.
-
-Selecting one from each row narrows the list to the intersection (for example, *Advanced + Valuation*). A live "Showing X of 100 questions" count sits above the cards, and an empty combination shows a short message rather than a blank screen.
-
-### Reading a question card
-
-Each card shows the category, a color-coded difficulty tag, the question, and two answer tabs:
-
-- **Technical questions** show a **Conversational Answer** (a tight, interview-ready response) and a **Deep Dive** (the framework and nuance behind it).
-- **Behavioral questions** carry a green **CARL** tag and show a **Model Answer** and a **CARL Breakdown** (guidance on each storytelling beat).
-
-Once you've practiced a question, a green **Best XX** badge appears showing your highest score for it.
-
-### Difficulty color key
-
-| Tier | Meaning |
-|---|---|
-| 🟢 **Foundational** | Definitional must-knows everyone should answer cold |
-| 🟡 **Core** | Standard questions you'll reliably get |
-| 🟠 **Advanced** | Multi-step synthesis and judgment |
-| 🔴 **Expert** | Open-ended, senior-level judgment calls |
+**Finance Frameworks** contains six reference frameworks — the 3-statement linking blueprint, DCF build order, WACC components, LBO value-creation levers, the capital allocation hierarchy, and the plan-vs-actual variance bridge — each broken into the steps you should be able to recite cold.
 
 ---
 
 ## The Practice Studio
 
-Click **Practice & Grade Answer** on any card to open the studio.
+Opening a question in the studio gives you a transcript area and two ways to answer. Click **🎤 Start Recording** to speak (the browser will ask for microphone permission the first time) or simply start typing. A timer starts on your first keystroke or the moment recording begins, so reading time doesn't count against you. When you're done, press **🧠 Submit for AI Evaluation**. Answers under 30 characters are rejected as too short to score meaningfully.
 
-- **Type** your answer in the box, or click **Start Recording** to dictate it.
-- Click **Submit for AI Evaluation** when you're done — the microphone turns off automatically on submit.
+The results panel shows your score (0–100), word count, keyword or CARL-beat coverage, filler-word count, answer duration, and — for spoken answers only — your pace in words per minute. Typed answers deliberately show no WPM, because typing speed is not interview pacing. The pacing notes flag answers that run faster than ~170 WPM (rushed), slower than ~110 WPM (dragging), or longer than 2½ minutes (most interview answers should land in 60–120 seconds).
 
-After you submit, the results panel shows a **score** (0–100, color-shifted by tier), three metrics — **Words**, **Keywords Hit** (or **CARL Parts** for behavioral), and **Filler Words** — and a breakdown of which keywords you mentioned and which to work in, or for behavioral questions, a checklist of which CARL beats you landed.
+Below the score, two follow-up tools do the real coaching work:
 
-> **Note:** Answers shorter than about 30 characters are declined with a prompt to give a fuller response — the scorer needs something real to evaluate.
+**Get real AI feedback.** The built-in score checks keyword coverage and pacing — it cannot judge whether your reasoning is correct. The studio therefore generates a ready-made coaching prompt containing the question, the model framework, and your transcript. Copy it and paste it into Claude (the **Open Claude ↗** button opens a new chat) for substantive feedback on accuracy, structure, and a tightened version of your answer you could deliver aloud.
+
+**Compare against the model answer.** Reveal how a strong candidate frames the question, then rate your own answer from 1 (major gaps) to 4 (strong). The tool compares your self-rating against your coverage score and tells you whether you're well calibrated, overconfident, or underselling yourself — a self-awareness signal interviewers actively probe for.
 
 ---
 
 ## How Scoring Works
 
-The in-app score is a fast, transparent **heuristic** — not an AI judgment of whether your answer was *correct*. It rewards completeness and clean delivery. Here's the exact math.
+The score measures *coverage and delivery*, not correctness. It is a practice heuristic, not a grade — use the AI coaching prompt for substance.
 
-### Technical questions
+**Technical questions** start from a base of 30 points, add up to 30 points for answer length (full credit at ~80 words), add up to 40 points for hitting the finance concepts an interviewer listens for (6 points each), and subtract 3 points per filler word ("um," "like," "you know," and similar). Scores are capped at 0–100.
 
-Starts at a base of 50, then:
+The keyword matcher is voice-aware: spoken transcripts never contain slashes, ampersands, or hyphens, so saying "EV to EBITDA," "SG and A," "P E ratio," or "sum of the parts" correctly matches keywords written as `ev/ebitda`, `sg&a`, `p/e`, and `sum-of-the-parts`.
 
-| Factor | Effect |
+**Behavioral questions** are scored on the CARL structure instead: 25 points for each detected story beat — Context/Challenge, Action, Result, Learning — minus 2 per filler word, minus 10 if the answer runs under 40 words. This is a structure check (is the beat present?), not a quality judgment.
+
+| Score band | Meaning |
 |---|---|
-| Length | Up to **+25**, scaling to a maximum at ~80 words |
-| Keywords | **+6** per core concept mentioned, capped at +30 (≈5 hits) |
-| Filler words | **−3** each ("um," "like," "basically"…) |
-
-Clamped to 0–100. Your **best** score per question is what's saved.
-
-### Behavioral questions (CARL)
-
-Behavioral questions are scored on **structure**, not keywords. The tool checks whether each of the four CARL beats is present:
-
-- **C** — Context / Challenge
-- **A** — Action (what *you* did)
-- **R** — Result (the outcome, ideally quantified)
-- **L** — Learning (the reflection)
-
-Each beat present is worth **25 points** (4 beats = 100), minus a light filler penalty and a small deduction for very short answers. The score literally tells you how many of the four beats you landed.
+| 90–100 | Excellent coverage and delivery |
+| 75–89 | Solid — a concept or beat is thin |
+| 60–74 | Developing — meaningful gaps |
+| Below 60 | Rework the answer before your next attempt |
 
 ---
 
-## AI Coaching Prompt
+## The Readiness Dashboard, Explained
 
-Because the score above can't judge *quality or correctness*, every practice session generates a ready-to-use **AI Coaching Prompt** that already contains the question, the model framework, and your transcribed answer.
+The dashboard is driven by your **recent** performance — the average of your last 3 attempts on each question — not your single best run. Your overall readiness score is the mean of those per-question recent averages, so it reflects where you are now and can go down if your recent attempts slip. Readiness levels are Emerging (below 60), Developing (60+), Interview Ready (80+), and Offer Ready (90+).
 
-- Click **Copy Coaching Prompt**, then **Open Claude** to paste it into a fresh chat.
-- For technical questions, the AI grades your reasoning and models a stronger version.
-- For behavioral questions, it evaluates your answer beat-by-beat against CARL.
+The **Recent Trend** indicator compares the average of your last 3 attempts against the 3 before them, across all questions: a swing of 4+ points shows as Improving or Slipping; otherwise you're Holding Steady. It needs at least 4 total attempts before it reports anything.
 
-This is where you learn whether your answer was actually **good** — the in-app score only tells you whether it was **complete**.
+The **Communication & Pacing** bar blends your behavioral-question performance with a filler-word pacing score, so it responds both to CARL practice and to cleaning up verbal habits.
 
----
-
-## Model Answer and Self-Scoring
-
-Below the coaching prompt, click **Reveal Model Answer** to see how a strong candidate would frame the question. It stays hidden until after you submit, on purpose — so you commit to your own answer first.
-
-Then rate yourself **1–4**:
-
-| Rating | Meaning |
-|---|---|
-| **1** | Major gaps |
-| **2** | Partial |
-| **3** | Solid |
-| **4** | Strong |
-
-The tool then shows a **calibration note** comparing your self-rating to the keyword score. Rate yourself higher than the coverage suggests and it nudges you to actually *say* the frameworks out loud; rate yourself lower and it points out the substance was there and the issue is likely delivery. Good calibration — your honest self-read matching the evidence — is exactly what holds up in a real interview.
+Question cards show a **Recent N** badge — the same last-3 average that feeds the dashboard.
 
 ---
 
-## The Readiness Dashboard
+## Saving, Moving, and Resetting Progress
 
-- **Overall Readiness Score** — the average of your best score across every question practiced, with a tier label.
-- **Competency Averages** — three bars: *Financial Modeling & Valuation* and *Strategic Finance* average your best scores in those skill areas, while *Communication & Pacing* blends your filler-word rate with your behavioral CARL scores.
-- **Performance Logs** — questions practiced (out of 100), total attempts, average filler words, average self-assessment (out of 4), and a recent trend indicator.
+Progress saves automatically to your browser's local storage after every attempt. Because storage is per-browser and per-device, three header buttons manage it:
 
-### Readiness tiers
+**📤 Export** downloads your complete progress as `cf-playbook-progress.json`. **📥 Import** loads a previously exported file — you'll see a summary of what the file contains and must confirm before it *replaces* the progress on the current device. **🔄 Reset Progress** permanently wipes everything after confirmation.
 
-| Score | Tier |
-|---|---|
-| — | Not Evaluated |
-| 0–59 | Emerging |
-| 60–79 | Developing |
-| 80–89 | Interview Ready |
-| 90–100 | Offer Ready |
-
-**Reset Progress** (top right) wipes everything after a confirmation step.
+Export/Import is also your safety net in two situations: moving between devices (export on your laptop, import on your desktop) and browsers that block local storage (private/incognito windows show a warning banner — export before closing the tab or your session is lost).
 
 ---
 
-## Things You Might Notice (and Why)
+## Privacy
 
-These are deliberate design choices, not bugs. Knowing them up front will save confusion.
+Everything runs client-side. Your recordings, transcripts, and scores are processed in your browser and stored only in your browser's local storage. Nothing is transmitted to any server. The one deliberate exception is the AI coaching prompt: *you* copy it and *you* paste it into Claude — nothing is sent automatically, and nothing leaves the page unless you take that action.
 
-| What you'll notice | Why it works that way |
-|---|---|
-| **The microphone doesn't work in some browsers.** | Speech recognition uses a browser feature available in **Chrome and Edge** but not Firefox or some others. When it's unavailable, the mic button is disabled with a note — just type your answer. Scoring works identically either way. |
-| **Your progress doesn't follow you to another device or browser.** | Progress is saved **locally on the device and browser** you're using, not to an account or the cloud. Practicing on your laptop won't appear on your phone, and clearing browser data resets it. This keeps the tool free, private, and login-free. |
-| **A keyword-stuffed answer can score high; a great answer phrased unusually can score lower.** | The in-app score checks whether the right **concepts appear**, not whether you used them correctly. It measures *completeness*, not *quality* — which is exactly why the **AI Coaching Prompt** exists. Paste it into Claude for the real judgment on correctness. |
-| **"AI Evaluation" isn't actually calling an AI.** | The instant score is a local heuristic, so it's fast and works offline. The genuine AI feedback is the **copy-to-Claude prompt** — that's the part powered by a real model. |
-| **The CARL checker sometimes says a beat is "missing" when you feel you covered it.** | It detects each beat by recognizing signal language — past-tense first-person verbs for *Action*, quantified outcomes for *Result*, phrases like "I learned" for *Learning*. If you implied a beat without clearly stating it, it may not register. It errs toward telling you to **state the beat explicitly**, which is good interview habit anyway. |
-| **The "Communication & Pacing" bar only moves after you practice — and reflects more than just talking.** | It blends your filler-word rate with your behavioral CARL scores, so it stays at zero until you've practiced and grows as both your delivery and storytelling improve. |
-| **Re-practicing a question doesn't inflate your "questions practiced" count.** | The count tracks **unique** questions. Re-doing one updates your *best* score and adds to *total attempts*, but you still count as one question practiced — so the dashboard reflects breadth honestly. |
-| **Your self-rating and the keyword score are shown side by side, not merged.** | Two honest signals you can compare tell you more than one blended number that hides the disagreement — and the disagreement (e.g., "I felt strong but missed the keywords") is where the learning is. |
-| **Only your best score per question sticks.** | The dashboard rewards your demonstrated ceiling, so a rough first attempt won't permanently drag down your readiness once you nail the question later. |
-| **The model answer stays hidden until you submit.** | This is on purpose — committing to your own answer first makes the comparison meaningful and prevents passive "read the answer, feel ready" practice. |
+Voice recording uses your browser's built-in speech recognition. Depending on the browser, the audio may be processed by the browser vendor's speech service (this is how Chrome's speech recognition works); the playbook itself never stores or transmits audio.
 
 ---
 
-## Tips for Best Results
+## Browser Support & Troubleshooting
 
-- **Practice out loud.** Typing tests your knowledge; speaking tests delivery and pacing — what the interview actually measures.
-- **Treat the score as a completeness check, then use the AI prompt for quality.** The two together are far more useful than either alone.
-- **Rate yourself honestly,** then read the calibration note. Closing the gap between how good you *feel* and how good you *are* is the whole game.
-- **Work the Expert and Advanced tiers last,** once the Foundational and Core mechanics are automatic.
-- **Use the Frameworks section** as a warm-up before a modeling or valuation block.
-
----
-
-## Troubleshooting
-
-| Symptom | Likely cause / fix |
-|---|---|
-| Mic button is greyed out | You're not in Chrome or Edge. Type your answer, or switch browsers. |
-| Progress disappeared | Browser data was cleared, or you're on a different device/browser. Progress is device-local by design. |
-| Score seems too low for a good answer | The scorer checks keyword/CARL presence, not quality. Make sure you're *saying* the core concepts; use the AI prompt for a real assessment. |
-| "Answer too short" message | Give a fuller response — the scorer needs at least a sentence or two. |
-| Nothing happens on Submit | Make sure there's text in the box and it's longer than a few words. |
+| Symptom | Cause | Fix |
+|---|---|---|
+| Record button disabled, note about unsupported browser | Browser lacks the Web Speech API (Firefox, some others) | Type your answer — scoring works identically — or use Chrome/Edge |
+| "Microphone access was blocked" | Mic permission denied | Click the padlock/site-settings icon in the address bar, allow the microphone, and try again — or type instead |
+| Yellow banner about local storage | Private/incognito mode or storage disabled | Progress won't survive a reload; use 📤 Export before closing |
+| Voice cuts out on iPhone/iPad | iOS Safari's speech recognition is unreliable | Known platform limitation — type answers on iOS, or practice voice on a desktop browser |
+| Dashboard score dropped after an update | Scores now reflect recent attempts, not best-ever | Working as intended — keep practicing and the recent average recovers |
 
 ---
 
-## Deployment
+## For Maintainers
 
-This is a static site — no server, no build step.
+**Deployment.** Upload `cf-playbook.html` to any static host. For GitHub Pages, commit it to the repository and it's live at the corresponding URL — no build pipeline required.
 
-1. Create a **public** repository (e.g., `cf-interview-playbook`).
-2. Add the playbook HTML file to the repo root and rename it **`index.html`** for a clean URL.
-3. Go to **Settings → Pages**, set the source to the **main** branch / **root** folder, and click **Save** (the Save step is required — Pages won't deploy without it).
-4. Your tool will be live at `https://<username>.github.io/<repo>/` within a minute.
+**Editing content.** All content lives in three constants near the top of the `<script>` block. `QUESTIONS` holds every question — each entry needs an `id`, `category`, `competency` (`modeling`, `strategy`, or `communication`), `difficulty`, `title`, `conversational` answer, `deepDive` answer, and (for technical questions) a `keywords` array; behavioral questions instead set `type: "behavioral"`. `FRAMEWORKS` holds the six framework cards. `SCORING` controls the point math (base score, length bonus, keyword points, filler penalty). Categories and filters render automatically from the data — adding a question in a new category creates the filter button for you.
 
-> Re-commits trigger a rebuild in under a minute. If you don't see an update, do a hard refresh (`Cmd/Ctrl + Shift + R`) to clear the browser cache.
-
----
-
-## Repository Structure
-
-| File | Purpose |
-|---|---|
-| `index.html` | The playbook (rename of the playbook HTML file). |
-| `manual.html` | Optional branded in-app help page; link it from the playbook sidebar. |
-| `README.md` | This document. |
-
----
-
-## Editing the Question Bank
-
-The entire bank lives in editable configuration objects at the top of the HTML file:
-
-- **`QUESTIONS`** — each entry has `id`, `category`, `competency` (`modeling` / `strategy` / `communication`), `difficulty` (`Foundational` / `Core` / `Advanced` / `Expert`), `title`, `conversational`, `deepDive`, and either `keywords` (technical) or `type: "behavioral"` (CARL-scored, no keywords needed).
-- **`FRAMEWORKS`** — the frameworks reference cards.
-- **`SCORING`** and **`CARL`** — the scoring weights and behavioral detection patterns.
-
-Adding a question is a copy-paste of one object; the hero counts, both filters, and the dashboard all update automatically from the array. To keep behavioral model answers scoring a clean 4/4, make sure each includes a clear Context cue, first-person past-tense Actions, a quantified Result, and an explicit "I learned…" Learning beat.
-
----
-
-## Tech Notes
-
-- **Stack:** plain HTML, CSS, and vanilla JavaScript in one file. No frameworks, dependencies, or build tooling.
-- **Persistence:** browser `localStorage` (device-local), wrapped in error handling so it degrades gracefully to in-memory if a sandbox blocks storage.
-- **Speech-to-text:** the Web Speech API (`webkitSpeechRecognition` / `SpeechRecognition`), available in Chromium-based browsers, with a typed-answer fallback everywhere else.
-- **Design system:** University of Utah crimson (`#CC0000`) and gold (`#c9a84c`) on a dark theme, with the Inter typeface.
-- **No tracking, no ads, no login.**
-
----
-
-## About
-
-Built for the **University of Utah David Eccles School of Business** MBA program as part of a suite of self-service career tools. Part of a family of single-file, GitHub Pages-deployed tools that share a consistent design system and editable configuration pattern.
+**Storage format.** Progress is stored under the key `eccles_cf_playbook_v2` as JSON containing per-question attempt records (score log, best, recent average, self-ratings, filler history) plus a global history of the last 12 scores. Version 1 progress is migrated automatically on first load. Note for the v1→v2 transition: v1 scores were computed under a more generous formula, so migrated scores will read slightly high until a few new attempts wash them out.
